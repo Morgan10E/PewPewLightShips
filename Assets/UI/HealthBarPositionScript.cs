@@ -26,7 +26,7 @@ public class HealthBarPositionScript : MonoBehaviour {
 	void Update () {
 		// have the health bar follow the game object
 		//Debug.Log (this.ship);
-		Debug.Log (this.healthBar);
+//		Debug.Log (this.healthBar);
 		Transform parent = GetComponent<Transform> ();
 		if (healthBar != null) {
 			// position

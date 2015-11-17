@@ -69,6 +69,7 @@ GameObject:
   - 114: {fileID: 11422880}
   - 114: {fileID: 11421868}
   - 114: {fileID: 11455410}
+  - 114: {fileID: 11450366}
   m_Layer: 13
   m_Name: Ship
   m_TagString: Ship
@@ -233,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTransform: {fileID: 477762}
+  turretTransform: {fileID: 444942}
   LerpRate: 15
 --- !u!114 &11422880
 MonoBehaviour:
@@ -246,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myTransform: {fileID: 477762}
+  turretTransform: {fileID: 444942}
   LerpRate: 15
   useHistoricalLerping: 0
 --- !u!114 &11424570
@@ -274,7 +277,20 @@ MonoBehaviour:
   turret: {fileID: 444942}
   radius: 1
   shipCamera: {fileID: 2047466}
-  projectile: {fileID: 113278, guid: 00d2e325d2c8db44cb63eb5fd73d243e, type: 2}
+--- !u!114 &11450366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b146dc7421804cc7881ef10627efaf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarPrefab: {fileID: 187102, guid: 39ed4d3b74b3a460db886f6a2e82675d, type: 2}
+  maxHealth: 100
+  currentHealth: 100
 --- !u!114 &11455410
 MonoBehaviour:
   m_ObjectHideFlags: 1

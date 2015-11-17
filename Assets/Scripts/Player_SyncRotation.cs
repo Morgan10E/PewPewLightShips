@@ -6,8 +6,10 @@ using System.Collections.Generic;
 public class Player_SyncRotation : NetworkBehaviour {
 
 	[SyncVar /*(hook = "OnPlayerRotationSync")*/] private Quaternion syncRotation;
+	[SyncVar] private Quaternion syncTurretRotation;
 
 	[SerializeField] Transform myTransform;
+	[SerializeField] Transform turretTransform;
 	[SerializeField] float LerpRate = 15;
 //	private float normalLerpRate = 15;
 //	private float fasterLerpRate = 25;
@@ -26,18 +28,20 @@ public class Player_SyncRotation : NetworkBehaviour {
 	void LerpRotation() {
 		if (!isLocalPlayer) {
 			myTransform.rotation = Quaternion.Lerp(myTransform.rotation, syncRotation, Time.deltaTime * LerpRate);
+			turretTransform.rotation = Quaternion.Lerp(turretTransform.rotation, syncTurretRotation, Time.deltaTime * LerpRate);
 		}
 	}
 
 	[Command]
-	void CmdProvideRotationToServer(Quaternion rotation) {
+	void CmdProvideRotationToServer(Quaternion rotation, Quaternion turretRotation) {
 		syncRotation = rotation;
+		syncTurretRotation = turretRotation;
 	}
 	
 	[ClientCallback]
 	void TransmitRotation() {
 		if (isLocalPlayer) {
-			CmdProvideRotationToServer (myTransform.rotation);
+			CmdProvideRotationToServer (myTransform.rotation, turretTransform.rotation);
 		}
 	}
 }

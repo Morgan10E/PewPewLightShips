@@ -6,8 +6,10 @@ using System.Collections.Generic;
 public class Player_SyncPosition : NetworkBehaviour {
 
 	[SyncVar (hook = "SyncPositionValues")] private Vector3 syncPos;
+	[SyncVar] private Vector3 syncTurretPos;
 
 	[SerializeField] Transform myTransform;
+	[SerializeField] Transform turretTransform;
 	[SerializeField] float LerpRate = 15;
 	private float normalLerpRate = 15;
 	private float fasterLerpRate = 25;
@@ -40,6 +42,7 @@ public class Player_SyncPosition : NetworkBehaviour {
 
 	void OrdinaryLerp() {
 		myTransform.position = Vector3.Lerp(myTransform.position, syncPos, Time.deltaTime * LerpRate);
+		turretTransform.position = Vector3.Lerp (turretTransform.position, syncTurretPos, Time.deltaTime * LerpRate);
 	}
 
 	void HistoricalLerp() {
@@ -59,14 +62,15 @@ public class Player_SyncPosition : NetworkBehaviour {
 	}
 
 	[Command]
-	void CmdProvidePositionToServer(Vector3 pos) {
+	void CmdProvidePositionToServer(Vector3 pos, Vector3 turPos) {
 		syncPos = pos;
+		syncTurretPos = turPos;
 	}
 
 	[ClientCallback]
 	void TransmitPosition() {
 		if (isLocalPlayer) {
-			CmdProvidePositionToServer (myTransform.position);
+			CmdProvidePositionToServer (myTransform.position, turretTransform.position);
 		}
 	}
 }

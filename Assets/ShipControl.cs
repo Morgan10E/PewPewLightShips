@@ -7,7 +7,7 @@ public class ShipControl : MonoBehaviour {
 	[SerializeField] float radius = 50f;
 	[SerializeField] Camera shipCamera;
 
-	public GameObject projectile;
+//	public GameObject projectile;
 	private bool isTethered = false;
 	GameObject tetherTarget;
 	LineRenderer lineRenderer;
@@ -16,8 +16,8 @@ public class ShipControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		transform.localEulerAngles = Vector3.up;
-		tetherTarget = null;
-		lineRenderer = null;
+//		tetherTarget = null;
+//		lineRenderer = null;
 	}
 
 	Vector3 getDirection() {
@@ -31,49 +31,50 @@ public class ShipControl : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void MouseUpdate () {
-		if (Input.GetKeyDown(KeyCode.Mouse0)) {
-			GameObject bullet = Instantiate(projectile, new Vector2(turret.position.x + turret.up.x, turret.position.y + turret.up.y), Quaternion.identity) as GameObject;
-			bullet.GetComponent<Rigidbody2D>().velocity = getDirection() * 10;
-			Debug.Log(getDirection()*10);
-		}
-
-		if (Input.GetMouseButtonDown(1)) { // right click
-			if (isTethered) {
-				isTethered = false;
-				this.springJoint.enabled = false;
-				springJoint.connectedBody = null;
-				lineRenderer.enabled = false;
-
-			} else {
-				GameObject bullet = Instantiate(projectile, new Vector2(transform.position.x + transform.up.x, transform.position.y + transform.up.y), Quaternion.identity) as GameObject;
-				TetherBulletScript bulletControlScript = bullet.GetComponent<TetherBulletScript>();
-				bulletControlScript.SetPlayer(this.gameObject);
-			}
-		}
-	}
-
-	public void TetherToObject(GameObject tetherTarget) {
-		this.tetherTarget = tetherTarget;
-		if (springJoint == null) springJoint = this.gameObject.AddComponent<SpringJoint2D>();
-		else springJoint.enabled = true;
-		springJoint.connectedBody = tetherTarget.gameObject.GetComponent<Rigidbody2D>();
-		springJoint.distance = 5f;
-		springJoint.dampingRatio = 5f;
-
-		if (lineRenderer == null) lineRenderer = this.gameObject.GetComponent<LineRenderer>();
-		lineRenderer.enabled = true;
-		lineRenderer.SetVertexCount(2);
-		lineRenderer.GetComponent<Renderer>().enabled = true;
-		isTethered = true;
-	}
+//	void MouseUpdate () {
+//		if (Input.GetKeyDown(KeyCode.Mouse0)) {
+//			GameObject bullet = Instantiate(projectile, new Vector2(turret.position.x + turret.up.x, turret.position.y + turret.up.y), Quaternion.identity) as GameObject;
+//			Vector3 dir = getDirection() * 10;
+//			bullet.GetComponent<Rigidbody2D>().velocity = dir;
+//			Debug.Log(bullet.GetComponent<Rigidbody2D>().velocity);
+//		}
+//
+//		if (Input.GetMouseButtonDown(1)) { // right click
+//			if (isTethered) {
+//				isTethered = false;
+//				this.springJoint.enabled = false;
+//				springJoint.connectedBody = null;
+//				lineRenderer.enabled = false;
+//
+//			} else {
+//				GameObject bullet = Instantiate(projectile, new Vector2(transform.position.x + transform.up.x, transform.position.y + transform.up.y), Quaternion.identity) as GameObject;
+//				TetherBulletScript bulletControlScript = bullet.GetComponent<TetherBulletScript>();
+//				bulletControlScript.SetPlayer(this.gameObject);
+//			}
+//		}
+//	}
+//
+//	public void TetherToObject(GameObject tetherTarget) {
+//		this.tetherTarget = tetherTarget;
+//		if (springJoint == null) springJoint = this.gameObject.AddComponent<SpringJoint2D>();
+//		else springJoint.enabled = true;
+//		springJoint.connectedBody = tetherTarget.gameObject.GetComponent<Rigidbody2D>();
+//		springJoint.distance = 5f;
+//		springJoint.dampingRatio = 5f;
+//
+//		if (lineRenderer == null) lineRenderer = this.gameObject.GetComponent<LineRenderer>();
+//		lineRenderer.enabled = true;
+//		lineRenderer.SetVertexCount(2);
+//		lineRenderer.GetComponent<Renderer>().enabled = true;
+//		isTethered = true;
+//	}
 
 	void Update() {
-		MouseUpdate();
-		if (isTethered) {
-			lineRenderer.SetPosition(0, this.transform.position);
-			lineRenderer.SetPosition(1, tetherTarget.transform.position);
-		}
+//		MouseUpdate();
+//		if (isTethered) {
+//			lineRenderer.SetPosition(0, this.transform.position);
+//			lineRenderer.SetPosition(1, tetherTarget.transform.position);
+//		}
 		MoveTurret ();
 	}
 
