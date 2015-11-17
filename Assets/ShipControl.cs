@@ -3,6 +3,10 @@ using System.Collections;
 
 public class ShipControl : MonoBehaviour { 
 
+	[SerializeField] Transform turret;
+	[SerializeField] float radius = 50f;
+	[SerializeField] Camera shipCamera;
+
 	public GameObject projectile;
 	private bool isTethered = false;
 	GameObject tetherTarget;
@@ -15,12 +19,23 @@ public class ShipControl : MonoBehaviour {
 		tetherTarget = null;
 		lineRenderer = null;
 	}
-	
+
+	Vector3 getDirection() {
+		Vector3 point = shipCamera.ScreenToWorldPoint(Input.mousePosition);
+		float xDir = point.x - transform.position.x;
+		float yDir = point.y - transform.position.y;
+		float norm = Mathf.Sqrt (Mathf.Pow(xDir, 2) + Mathf.Pow(yDir,2));
+		Vector3 direction = new Vector3 (xDir / norm, yDir / norm, 0);
+		//Debug.Log (direction);
+		return direction;
+	}
+
 	// Update is called once per frame
 	void MouseUpdate () {
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			Rigidbody2D bullet = Instantiate(projectile, new Vector2(transform.position.x + transform.up.x, transform.position.y + transform.up.y), Quaternion.identity) as Rigidbody2D;
-			bullet.GetComponent<Rigidbody2D>().velocity = transform.up * 10;
+		if (Input.GetKeyDown(KeyCode.Mouse0)) {
+			GameObject bullet = Instantiate(projectile, new Vector2(turret.position.x + turret.up.x, turret.position.y + turret.up.y), Quaternion.identity) as GameObject;
+			bullet.GetComponent<Rigidbody2D>().velocity = getDirection() * 10;
+			Debug.Log(getDirection()*10);
 		}
 
 		if (Input.GetMouseButtonDown(1)) { // right click
@@ -59,6 +74,17 @@ public class ShipControl : MonoBehaviour {
 			lineRenderer.SetPosition(0, this.transform.position);
 			lineRenderer.SetPosition(1, tetherTarget.transform.position);
 		}
+		MoveTurret ();
+	}
+
+	void MoveTurret (){
+		Vector3 dir = getDirection ();
+		float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg-90;
+		dir = new Vector3 (dir.x * radius + transform.position.x, dir.y * radius+ transform.position.y, 0);
+		turret.position = dir;
+		//Debug.Log (dir);
+		turret.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		//turret.rotation.y = transform.position.y + dir.y * radius;
 	}
 
 	void FixedUpdate () {
