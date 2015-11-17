@@ -25,7 +25,7 @@ public class TetherBulletScript : MonoBehaviour {
 
 	public void TetherPlayer(GameObject tetherObject) {
 		ShipControl playerControl = player.GetComponent<ShipControl>();
-		playerControl.TetherToObject(tetherObject);
+//		playerControl.TetherToObject(tetherObject);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
