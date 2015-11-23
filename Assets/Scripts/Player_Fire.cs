@@ -5,19 +5,22 @@ using UnityEngine.Networking;
 public class Player_Fire : NetworkBehaviour {
 
 	public GameObject projectile;
+	public float fireRate = 0.1f;
 	[SerializeField] Transform turretTransform;
+	private bool canShoot = true;
 
 	void Start() {
 
 	}
 
-	void Update() {
+	void FixedUpdate() {
 		MouseUpdate ();
 	}
 
 	void MouseUpdate () {
-		if (Input.GetMouseButtonDown(0)) {
-			ShootBullet();
+		if (Input.GetMouseButton(0) && canShoot) {
+			//ShootBullet();
+			StartCoroutine (FireAfterTime ());
 			//Debug.Log(bullet.GetComponent<Rigidbody2D>().velocity);
 		}
 	}
@@ -35,7 +38,15 @@ public class Player_Fire : NetworkBehaviour {
 		float yPos = turretTransform.position.y;//this.transform.position.y;
 		Vector3 dir = GetComponent<ShipControl> ().getDirection () * 20;
 		CmdSpawnBasicBullet (xPos, yPos, dir.x, dir.y);
+
 	}
 		
+	IEnumerator FireAfterTime()
+	{
+		canShoot = false;
+		ShootBullet ();
+		yield return new WaitForSeconds(fireRate);
+		canShoot = true;
+	}
 
 }
