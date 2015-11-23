@@ -6,6 +6,7 @@ public class ShipControl : MonoBehaviour {
 	[SerializeField] Transform turret;
 	[SerializeField] float radius = 50f;
 	[SerializeField] Camera shipCamera;
+	[SerializeField] float rotationRate = 400f;
 
 //	public GameObject projectile;
 	private bool isTethered = false;
@@ -104,7 +105,7 @@ public class ShipControl : MonoBehaviour {
 		if (h != 0 || v != 0) {
 			float angle = Mathf.Atan2 (newSpeed.y, newSpeed.x) * Mathf.Rad2Deg-90;
 			Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
-			transform.rotation = Quaternion.RotateTowards (transform.rotation, q, 300*Time.deltaTime);
+			transform.rotation = Quaternion.RotateTowards (transform.rotation, q, rotationRate*Time.deltaTime);
 		}
 	}
 }
