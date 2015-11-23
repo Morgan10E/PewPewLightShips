@@ -38,4 +38,8 @@ public class HealthBarPositionScript : MonoBehaviour {
 			healthTrans.localScale = new Vector3(healthPercentage,healthTrans.localScale.y,healthTrans.localScale.z);
 		}
 	}
+
+	public void setCurrentHealth(float val) {
+		currentHealth = val;
+	}
 }

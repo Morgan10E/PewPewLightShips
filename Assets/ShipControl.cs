@@ -20,7 +20,7 @@ public class ShipControl : MonoBehaviour {
 //		lineRenderer = null;
 	}
 
-	Vector3 getDirection() {
+	public Vector3 getDirection() {
 		Vector3 point = shipCamera.ScreenToWorldPoint(Input.mousePosition);
 		float xDir = point.x - transform.position.x;
 		float yDir = point.y - transform.position.y;
@@ -29,6 +29,7 @@ public class ShipControl : MonoBehaviour {
 		//Debug.Log (direction);
 		return direction;
 	}
+	
 
 	// Update is called once per frame
 //	void MouseUpdate () {
