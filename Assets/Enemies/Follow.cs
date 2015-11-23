@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class Follow : MonoBehaviour {
+public class Follow : NetworkBehaviour {
 
 	private GameObject target;
 	public float moveSpeed;
@@ -12,12 +13,20 @@ public class Follow : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		Vector3 dir = target.transform.position - transform.position;
-		float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+	void FixedUpdate () {
+		if (isServer) {
+			if (target != null) {
+				Vector3 dir = target.transform.position - transform.position;
+				float angle = Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg - 90;
+				transform.rotation = Quaternion.AngleAxis (angle, Vector3.forward);
 
-		transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+				transform.position = Vector3.MoveTowards (transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+			} else {
+				// get a target
+				target = GameObject.FindGameObjectWithTag ("Ship");
+				
+			}
+		}
 	}
 
 	void SetTarget(GameObject newTarget) {

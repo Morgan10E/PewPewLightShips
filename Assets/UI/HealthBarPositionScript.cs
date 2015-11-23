@@ -13,13 +13,7 @@ public class HealthBarPositionScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Transform parent = GetComponent<Transform> ();
-		height = parent.localScale.y / GetComponent<SpriteRenderer>().sprite.bounds.size.y;
-		// create the health bar
-		healthBar = Instantiate(healthBarPrefab, new Vector2(parent.position.x, parent.position.y + height), Quaternion.identity) as GameObject;
-		// get the width and height of our attached object
-		baseScale = healthBar.transform.lossyScale.x;
-
+		CreateHealthBar ();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +31,28 @@ public class HealthBarPositionScript : MonoBehaviour {
 			float healthPercentage = currentHealth / maxHealth;
 			healthTrans.localScale = new Vector3(healthPercentage,healthTrans.localScale.y,healthTrans.localScale.z);
 		}
+	}
+
+	public void RemoveHealthBarSprite() {
+		//Destroy (healthBar);
+		//healthBar = null;
+		healthBar.GetComponent<SpriteRenderer> ().enabled = false;
+	}
+
+	public void EnableHealthBarSprite() {
+		//CreateHealthBar ();
+		healthBar.GetComponent<SpriteRenderer> ().enabled = true;
+		setCurrentHealth(maxHealth);
+		
+	}
+
+	void CreateHealthBar() {
+		Transform parent = GetComponent<Transform> ();
+		height = parent.localScale.y / GetComponent<SpriteRenderer>().sprite.bounds.size.y;
+		// create the health bar
+		healthBar = Instantiate(healthBarPrefab, new Vector2(parent.position.x, parent.position.y + height), Quaternion.identity) as GameObject;
+		// get the width and height of our attached object
+		baseScale = healthBar.transform.lossyScale.x;
 	}
 
 	public void setCurrentHealth(float val) {

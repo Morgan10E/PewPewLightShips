@@ -22,7 +22,7 @@ public class Lifetime : NetworkBehaviour {
 
 	IEnumerator ExecuteAfterTime(float time)
 	{
-		Debug.Log ("yielding for " + time);
+		//Debug.Log ("yielding for " + time);
 		yield return new WaitForSeconds(time);
 		
 		// Code to execute after the delay
