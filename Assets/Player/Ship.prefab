@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 120954, guid: 253f2e066f7334304b17468c949368ab, type: 2}
+  turretTransform: {fileID: 444942}
 --- !u!114 &11477502
 MonoBehaviour:
   m_ObjectHideFlags: 1
