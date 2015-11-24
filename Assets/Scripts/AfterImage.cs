@@ -4,8 +4,8 @@ using UnityEngine.Networking;
 
 public class AfterImage : NetworkBehaviour {
 	public GameObject particlePrefab;
-	GameObject afterImage;
-	ParticleSystem pSys;
+	GameObject afterImage = null;
+	ParticleSystem pSys = null;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +13,7 @@ public class AfterImage : NetworkBehaviour {
 		AttachParticleSystem ();
 	}
 
-	void AttachParticleSystem() {
+	public void AttachParticleSystem() {
 		afterImage = Instantiate(particlePrefab);
 		afterImage.transform.parent = gameObject.transform;
 		pSys = afterImage.GetComponent<ParticleSystem> ();
@@ -21,8 +21,10 @@ public class AfterImage : NetworkBehaviour {
 	}
 
 	public void EnableAfterImage() {
+//		if (pSys == null)
+//			AttachParticleSystem ();
 		pSys.startRotation = ((gameObject.transform.eulerAngles.z - 180) % 360) * Mathf.Deg2Rad;
-		//afterImage.transform.parent = gameObject.transform;
+		afterImage.transform.position = gameObject.transform.position;
 		
 		pSys.enableEmission = true;
 
@@ -44,7 +46,7 @@ public class AfterImage : NetworkBehaviour {
 			return;
 		if (enable) {
 			pSys.startRotation = ((gameObject.transform.eulerAngles.z - 180) % 360) * Mathf.Deg2Rad;
-			//afterImage.transform.parent = gameObject.transform;
+			afterImage.transform.position = gameObject.transform.position;
 			pSys.enableEmission = true;
 		} else {
 			pSys.enableEmission = false;
