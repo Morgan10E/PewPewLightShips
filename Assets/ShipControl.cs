@@ -10,6 +10,7 @@ public class ShipControl : MonoBehaviour {
 
 //	public GameObject projectile;
 	private bool isTethered = false;
+	private bool isBoosting = false;
 	GameObject tetherTarget;
 	LineRenderer lineRenderer;
 	SpringJoint2D springJoint;
@@ -90,6 +91,19 @@ public class ShipControl : MonoBehaviour {
 		//turret.rotation.y = transform.position.y + dir.y * radius;
 	}
 
+	void DoneBoosting() {
+		// reset the velocity
+		float h = Input.GetAxis("Horizontal");
+		float v = Input.GetAxis("Vertical");
+		Vector2 newSpeed = new Vector2 (h * 10, v * 10);
+		GetComponent<Rigidbody2D> ().velocity = newSpeed;
+		if (GetComponent<AfterImage>() != null) {
+			// TODO: make this happen over the network
+			GetComponent<AfterImage>().DisableAfterImage();
+		}
+		isBoosting = false;
+	}
+
 	void FixedUpdate () {
 		//#if CROSS_PLATFORM_INPUT
 		//float h = CrossPlatformInput.GetAxis("Horizontal");
@@ -98,9 +112,29 @@ public class ShipControl : MonoBehaviour {
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
 		//#endif
+		bool shiftPressed = Input.GetKeyDown ("left shift");
 
-		Vector2 newSpeed = new Vector2(h*10, v*10);
-		GetComponent<Rigidbody2D>().velocity = newSpeed;
+		if (shiftPressed) {
+			Debug.Log (transform.right);
+			if (!isBoosting) {
+				// start boosting
+				isBoosting = true;
+				float angle = transform.rotation.eulerAngles.z;
+				GetComponent<Rigidbody2D> ().velocity = new Vector2(-transform.right.y * 20, transform.right.x * 20);
+				Invoke("DoneBoosting", 0.5f);
+
+				// if we can, enable the after image
+				if (GetComponent<AfterImage>() != null) {
+					// TODO: make this happen over the network
+					GetComponent<AfterImage>().EnableAfterImage();
+				}
+			}
+		}
+
+		Vector2 newSpeed = new Vector2 (h * 10, v * 10);
+		if (!isBoosting) {
+			GetComponent<Rigidbody2D> ().velocity = newSpeed;
+		}
 
 		if (h != 0 || v != 0) {
 			float angle = Mathf.Atan2 (newSpeed.y, newSpeed.x) * Mathf.Rad2Deg-90;
