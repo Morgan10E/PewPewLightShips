@@ -57,7 +57,7 @@ public class Player_ID : NetworkBehaviour {
 
 	[Command]
 	void CmdAssignPlayerTeam() {
-		if (GetComponent<TeamIdentity>().GetTeam() == -1)
+		if (GetComponent<TeamIdentity>().GetTeam() == -1 && GameObject.Find("TeamManager") != null)
 			GameObject.Find("TeamManager").GetComponent<TeamManager>().AssignTeam(gameObject);
 	}
 }
