@@ -41,7 +41,13 @@ public class Player_SyncPosition : NetworkBehaviour {
 	}
 
 	void OrdinaryLerp() {
-		myTransform.position = Vector3.Lerp(myTransform.position, syncPos, Time.deltaTime * LerpRate);
+		Vector2 deltaVec = myTransform.position - syncPos;
+		float distanceDelta = Mathf.Abs(deltaVec.x) + Mathf.Abs (deltaVec.y);
+		if (distanceDelta > 0.1) {
+			myTransform.position = Vector3.Lerp (myTransform.position, syncPos, Time.deltaTime * LerpRate);
+		} else {
+			myTransform.position = syncPos;
+		}
 		turretTransform.position = Vector3.Lerp (turretTransform.position, syncTurretPos, Time.deltaTime * LerpRate);
 	}
 
