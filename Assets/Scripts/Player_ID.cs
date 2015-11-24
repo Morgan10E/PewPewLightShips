@@ -11,6 +11,7 @@ public class Player_ID : NetworkBehaviour {
 	public override void OnStartLocalPlayer() {
 		GetNetIdentity ();
 		SetIdentity ();
+		AssignTeam ();
 	}
 
 	// Use this for initialization
@@ -23,6 +24,11 @@ public class Player_ID : NetworkBehaviour {
 		if (myTransform.name == "" || myTransform.name == "Ship(Clone)") {
 			SetIdentity();
 		}
+	}
+
+	[Client]
+	void AssignTeam() {
+		CmdAssignPlayerTeam ();
 	}
 
 	[Client]
@@ -47,5 +53,11 @@ public class Player_ID : NetworkBehaviour {
 	[Command]
 	void CmdTellServerMyIdentity(string identity) {
 		playerUniqueIdentity = identity;
+	}
+
+	[Command]
+	void CmdAssignPlayerTeam() {
+		if (GetComponent<TeamIdentity>().GetTeam() == -1)
+			GameObject.Find("TeamManager").GetComponent<TeamManager>().AssignTeam(gameObject);
 	}
 }

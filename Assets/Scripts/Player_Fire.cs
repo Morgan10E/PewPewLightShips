@@ -28,6 +28,8 @@ public class Player_Fire : NetworkBehaviour {
 	[Command]
 	void CmdSpawnBasicBullet(float x, float y, float vx, float vy) {
 		GameObject bullet = Instantiate(projectile, new Vector2(x, y), Quaternion.identity) as GameObject;
+		if (bullet.GetComponent<TeamIdentity> () != null && gameObject.GetComponent<TeamIdentity>() != null)
+			bullet.GetComponent<TeamIdentity> ().SetTeam (gameObject.GetComponent<TeamIdentity> ().GetTeam ());
 		bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(vx, vy);
 		NetworkServer.Spawn (bullet);
 	}

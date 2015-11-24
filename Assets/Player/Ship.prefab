@@ -76,6 +76,7 @@ GameObject:
   - 114: {fileID: 11474044}
   - 96: {fileID: 9667592}
   - 114: {fileID: 11448338}
+  - 114: {fileID: 11463220}
   m_Layer: 13
   m_Name: Ship
   m_TagString: Ship
@@ -425,6 +426,18 @@ MonoBehaviour:
     i15: 35
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &11463220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb672a63dac19420abc69902218c4698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamNum: -1
 --- !u!114 &11474044
 MonoBehaviour:
   m_ObjectHideFlags: 1
