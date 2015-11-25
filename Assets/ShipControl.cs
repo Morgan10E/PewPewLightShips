@@ -115,7 +115,6 @@ public class ShipControl : MonoBehaviour {
 		bool shiftPressed = Input.GetKeyDown ("left shift");
 
 		if (shiftPressed) {
-			Debug.Log (transform.right);
 			if (!isBoosting) {
 				// start boosting
 				isBoosting = true;

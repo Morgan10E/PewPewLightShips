@@ -211,7 +211,6 @@ GameObject:
   - 92: {fileID: 1088685543}
   - 124: {fileID: 1088685542}
   - 81: {fileID: 1088685541}
-  - 114: {fileID: 1088685540}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -219,22 +218,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1088685540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1088685539}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43a39444b603947fb9a8669cb96f5a87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  damping: .200000003
-  lookAheadFactor: 2
-  lookAheadReturnSpeed: .5
-  lookAheadMoveThreshold: .100000001
 --- !u!81 &1088685541
 AudioListener:
   m_ObjectHideFlags: 0

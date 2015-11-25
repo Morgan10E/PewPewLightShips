@@ -46,6 +46,10 @@ public class HealthBarPositionScript : MonoBehaviour {
 		
 	}
 
+	public void DestroyHealthBar() {
+		Destroy (healthBar);
+	}
+
 	void CreateHealthBar() {
 		Transform parent = GetComponent<Transform> ();
 		height = parent.localScale.y / GetComponent<SpriteRenderer>().sprite.bounds.size.y;

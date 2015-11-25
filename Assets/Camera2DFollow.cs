@@ -23,6 +23,8 @@ public class Camera2DFollow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (target == null)
+			return;
 		//transform.rotation = Quaternion.Euler(Vector3.zero);
 		//transform.rotation = Quaternion.Euler(new Vector3(0, 0, -target.rotation.z));
 		

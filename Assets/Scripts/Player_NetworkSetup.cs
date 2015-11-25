@@ -16,4 +16,11 @@ public class Player_NetworkSetup : NetworkBehaviour {
 		}
 	}
 
+	void OnDestroy() {
+		if (GetComponent<HealthBarPositionScript> ()) {
+			GetComponent<HealthBarPositionScript>().DestroyHealthBar();
+		}
+		Debug.Log ("Player Disconnected");
+	}
+
 }
