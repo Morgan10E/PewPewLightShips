@@ -34,12 +34,19 @@ public class Player_Die : NetworkBehaviour {
 		RpcRespawnPlayer ();
 	}
 
+	void SetSpriteRendering(bool visible) {
+		SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+		foreach (SpriteRenderer sr in spriteRenderers) {
+			sr.enabled = visible;
+		}
+	}
 
 	[ClientRpc]
 	void RpcKillPlayer()
 	{
 		// disable the renderer
-		GetComponent<SpriteRenderer> ().enabled = false;
+		//GetComponent<SpriteRenderer> ().enabled = false;
+		SetSpriteRendering (false);
 
 		// disable the colliders
 		foreach(Collider2D c in GetComponents<Collider2D> ()) {
@@ -65,7 +72,7 @@ public class Player_Die : NetworkBehaviour {
 		GetComponent<Player_Health> ().ResetHealth ();
 
 		// enable the renderer
-		GetComponent<SpriteRenderer> ().enabled = true;
+		SetSpriteRendering (true);
 		
 		// enable the colliders
 		foreach(Collider2D c in GetComponents<Collider2D> ()) {
