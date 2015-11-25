@@ -12,6 +12,7 @@ public class Player_ID : NetworkBehaviour {
 		GetNetIdentity ();
 		SetIdentity ();
 		AssignTeam ();
+
 	}
 
 	// Use this for initialization
