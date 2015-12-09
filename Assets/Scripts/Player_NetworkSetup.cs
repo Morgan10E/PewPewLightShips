@@ -14,6 +14,8 @@ public class Player_NetworkSetup : NetworkBehaviour {
 			GetComponent<Player_Fire>().enabled = true;
 			PlayerCam.enabled = true;
 		}
+		// enable the trail renderer
+		GetComponent<Player_Trail>().AddTrail();
 	}
 
 	void OnDestroy() {
