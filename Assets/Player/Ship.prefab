@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 444942}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ShipTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 483714}
   - 212: {fileID: 21279710}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_turret_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,6 @@ GameObject:
   - 61: {fileID: 6132112}
   - 114: {fileID: 11444164}
   - 114: {fileID: 11474044}
-  - 96: {fileID: 9667592}
   - 114: {fileID: 11448338}
   - 114: {fileID: 11463220}
   - 114: {fileID: 11410546}
@@ -247,53 +246,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151142}
   m_Enabled: 1
---- !u!96 &9667592
-TrailRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175444}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 1cafb756ae2df45748f187f03194bbe0, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Time: 1
-  m_StartWidth: 0.1
-  m_EndWidth: 0.1
-  m_Colors:
-    m_Color[0]:
-      serializedVersion: 2
-      rgba: 16777215
-    m_Color[1]:
-      serializedVersion: 2
-      rgba: 2030043135
-    m_Color[2]:
-      serializedVersion: 2
-      rgba: 4294967295
-    m_Color[3]:
-      serializedVersion: 2
-      rgba: 2063597567
-    m_Color[4]:
-      serializedVersion: 2
-      rgba: 16777215
-  m_MinVertexDistance: 0.1
-  m_Autodestruct: 0
 --- !u!114 &11410546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,7 +264,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1bdfa18305b7457ebc0a720f6e6edb4, type: 3}
   m_Name: 
@@ -360,8 +312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
   m_SendInterval: 0.04761905
-  m_SyncRotationAxis: 1
-  m_RotationSyncCompression: 0
+  m_SyncRotationAxis: 0
+  m_RotationSyncCompression: 1
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_SnapThreshold: 5
@@ -499,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b28172eac00454aa2b50b881d58988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 144352, guid: bcd7955a47a954f5a8302b046860a9cc, type: 2}
+  projectile: {fileID: 125238, guid: 72339eee182984ac7ab3d91fa72867d2, type: 2}
   fireRate: 0.1
   bulletSpeed: 30
   turretTransform: {fileID: 444942}
@@ -634,12 +586,12 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 144352, guid: bcd7955a47a954f5a8302b046860a9cc, type: 2}
+      objectReference: {fileID: 125238, guid: 72339eee182984ac7ab3d91fa72867d2, type: 2}
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 1
@@ -739,6 +691,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SendInterval
       value: 0.04761905
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RotationSyncCompression
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SyncSpin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

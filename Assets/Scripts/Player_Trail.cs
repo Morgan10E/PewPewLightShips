@@ -3,9 +3,10 @@ using System.Collections;
 
 public class Player_Trail : MonoBehaviour {
 
-	[SerializeField] GameObject trail;
-	[SerializeField] float yOffset = 0.5f;
-	[SerializeField] float xOffset = 0.5f;
+	public GameObject trail;
+	public float yOffset = 0.5f;
+	public float xOffset = 0.5f;
+	private float trailTime = 0.2f;
 
 	private Transform shipTransform;
 	GameObject leftTrail;
@@ -25,20 +26,25 @@ public class Player_Trail : MonoBehaviour {
 		rightTrail = Instantiate(trail, shipTransform.position+rightOffset, Quaternion.identity) as GameObject;
 		leftTrail.transform.parent = shipTransform;
 		rightTrail.transform.parent = shipTransform;
+		trailTime = leftTrail.GetComponent<TrailRenderer> ().time;
 	}
 
 	public void DisableTrail() {
 		if (!created)
 			return;
-		leftTrail.GetComponent<TrailRenderer> ().enabled = false;
-		rightTrail.GetComponent<TrailRenderer> ().enabled = false;
+		leftTrail.GetComponent<TrailRenderer> ().time = -1;
+		rightTrail.GetComponent<TrailRenderer> ().time = -1;
+		//leftTrail.GetComponent<TrailRenderer> ().enabled = false;
+		//rightTrail.GetComponent<TrailRenderer> ().enabled = false;
 	}
 
 	public void EnableTrail() {
 		if (!created)
 			return;
-		leftTrail.GetComponent<TrailRenderer> ().enabled = true;
-		rightTrail.GetComponent<TrailRenderer> ().enabled = true;
+		leftTrail.GetComponent<TrailRenderer> ().time = trailTime;
+		rightTrail.GetComponent<TrailRenderer> ().time = trailTime;
+//		leftTrail.GetComponent<TrailRenderer> ().enabled = true;
+//		rightTrail.GetComponent<TrailRenderer> ().enabled = true;
 	}
 	
 	// Update is called once per frame

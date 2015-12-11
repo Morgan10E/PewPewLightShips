@@ -15,7 +15,7 @@ public class Player_NetworkSetup : NetworkBehaviour {
 			PlayerCam.enabled = true;
 		}
 		// enable the trail renderer
-		GetComponent<Player_Trail>().AddTrail();
+		this.gameObject.GetComponent<Player_Trail>().AddTrail();
 	}
 
 	void OnDestroy() {

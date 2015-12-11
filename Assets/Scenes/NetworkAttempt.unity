@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 55671053}
   - 212: {fileID: 55671052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 463160, guid: 8eaf023c2a44b40e0b1fabd8208584d2, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8eaf023c2a44b40e0b1fabd8208584d2, type: 2}
@@ -378,6 +378,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1 &1232282917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1232282919}
+  - 114: {fileID: 1232282918}
+  m_Layer: 0
+  m_Name: TrailPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1232282918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232282917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673b60cbdc6be43709cf1d905c26f045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numObjects: 100
+  trailPrefab: {fileID: 100750, guid: db2e4c92d2fbb4ffdb454f7d6bfe2e8d, type: 2}
+--- !u!4 &1232282919
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232282917}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3000002, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1001 &1304355514
 Prefab:
   m_ObjectHideFlags: 0
@@ -387,11 +428,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1fd6ebdeba0d44d529a4855cb9b7f70e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.44792104
+      value: 2.447921
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1fd6ebdeba0d44d529a4855cb9b7f70e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .564905047
+      value: 0.56490505
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1fd6ebdeba0d44d529a4855cb9b7f70e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -480,6 +521,7 @@ MonoBehaviour:
   m_SpawnPrefabs:
   - {fileID: 120954, guid: 253f2e066f7334304b17468c949368ab, type: 2}
   - {fileID: 144352, guid: bcd7955a47a954f5a8302b046860a9cc, type: 2}
+  - {fileID: 125238, guid: 72339eee182984ac7ab3d91fa72867d2, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
