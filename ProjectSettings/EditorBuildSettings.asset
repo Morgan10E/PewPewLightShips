@@ -9,5 +9,7 @@ EditorBuildSettings:
     path: Assets/Networking/multiplayer_scene.unity
   - enabled: 0
     path: Assets/network_test.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NetworkAttempt.unity
+  - enabled: 1
+    path: Assets/Scenes/NetworkDungeon.unity

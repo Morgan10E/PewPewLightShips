@@ -10,6 +10,7 @@ public class HealthBarPositionScript : MonoBehaviour {
 	public float maxHealth = 100;
 	public float currentHealth = 100;
 	private float baseScale = 1;
+	private float targetHealth = 100;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class HealthBarPositionScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		currentHealth = Mathf.Lerp (currentHealth, targetHealth, 0.1f);
 		// have the health bar follow the game object
 		//Debug.Log (this.ship);
 //		Debug.Log (this.healthBar);
@@ -60,6 +62,6 @@ public class HealthBarPositionScript : MonoBehaviour {
 	}
 
 	public void setCurrentHealth(float val) {
-		currentHealth = val;
+		targetHealth = val;
 	}
 }

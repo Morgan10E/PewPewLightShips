@@ -69,16 +69,18 @@ public class Player_Die : NetworkBehaviour {
 			c.enabled = false;
 		}
 
-		// disable the health bar
-		GetComponent<HealthBarPositionScript> ().RemoveHealthBarSprite ();
+
 		//GetComponent<HealthBarPositionScript> ().enabled = false;
 
 		if (isLocalPlayer) {
 			// disable the ship control
-			GetComponent<ShipControl>().enabled = false;
+			GetComponent<ShipControl> ().enabled = false;
 			// disable bullets
-			GetComponent<Player_Fire>().enabled = false;
+			GetComponent<Player_Fire> ().enabled = false;
 
+		} else {
+			// disable the health bar
+			GetComponent<HealthBarPositionScript> ().RemoveHealthBarSprite ();
 		}
 
 		// move to the respawn point
@@ -103,20 +105,15 @@ public class Player_Die : NetworkBehaviour {
 		foreach(Collider2D c in GetComponents<Collider2D> ()) {
 			c.enabled = true;
 		}
-
-
-		
-		// enable the health bar
-		//GetComponent<HealthBarPositionScript> ().enabled = true;
-		GetComponent<HealthBarPositionScript> ().EnableHealthBarSprite ();
-
-
 		
 		if (isLocalPlayer) {
 			// enable the ship control
-			GetComponent<ShipControl>().enabled = true;
+			GetComponent<ShipControl> ().enabled = true;
 			// enable bullets
-			GetComponent<Player_Fire>().enabled = true;
+			GetComponent<Player_Fire> ().enabled = true;
+		} else {
+			// enable the health bar
+			GetComponent<HealthBarPositionScript> ().EnableHealthBarSprite ();
 		}
 		spawning = false;
 	}

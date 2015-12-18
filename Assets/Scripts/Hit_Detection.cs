@@ -18,10 +18,11 @@ public class Hit_Detection : NetworkBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
-		//Debug.Log ("Collision detected");
-//		if (col.gameObject.tag == "Projectile") {
-//			DestroyOnCollision (col.gameObject);
-//		}
+		TeamIdentity myTeam = GetComponent<TeamIdentity> ();
+		TeamIdentity colTeam = col.gameObject.GetComponent<TeamIdentity> ();
+		if (myTeam != null && colTeam != null && myTeam.GetTeam() == colTeam.GetTeam()) {
+			return;
+		}
 		if (col.gameObject.GetComponent<Player_Health> () != null) {
 			col.gameObject.GetComponent<Player_Health> ().TakeDamage(10);
 		}

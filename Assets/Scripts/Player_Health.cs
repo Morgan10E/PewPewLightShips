@@ -5,11 +5,12 @@ using UnityEngine.Networking;
 public class Player_Health : NetworkBehaviour {
 
 	public int maxHealth = 100;
-	[SyncVar] int health = 100;
+	[SyncVar] public int health = 100;
 
 	// Use this for initialization
 	void Start () {
 		health = maxHealth;
+		StartCoroutine (UpdateHealthLoop ());
 	}
 	
 	// Update is called once per frame
@@ -21,7 +22,24 @@ public class Player_Health : NetworkBehaviour {
 	void RpcDamage(int amount)
 	{
 		//Debug.Log("Took damage:" + amount);
-		GetComponent<HealthBarPositionScript> ().setCurrentHealth (health);
+		if (GetComponent<HealthBarPositionScript> ().enabled) {
+			GetComponent<HealthBarPositionScript> ().setCurrentHealth (health);
+		} else {
+			GetComponent<PlayerGui> ().setCurrentHealth (health);
+		}
+	}
+
+	IEnumerator UpdateHealthLoop()
+	{
+		while(true)
+		{
+			if (GetComponent<HealthBarPositionScript> ().enabled) {
+				GetComponent<HealthBarPositionScript> ().setCurrentHealth (health);
+			} else {
+				GetComponent<PlayerGui> ().setCurrentHealth (health);
+			}
+			yield return new WaitForSeconds(0.1f);
+		}
 	}
 	
 	public void TakeDamage(int amount)

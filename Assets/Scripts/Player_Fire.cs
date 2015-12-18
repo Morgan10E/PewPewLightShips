@@ -7,22 +7,36 @@ public class Player_Fire : NetworkBehaviour {
 	public GameObject projectile;
 	public float fireRate = 0.1f;
 	public float bulletSpeed = 30;
+	public float overheatRate = 5.0f;
+	public float overheatCoolRate = 0.1f;
+	public float overheatCooldown = 0.1f;
 	[SerializeField] Transform turretTransform;
 	private bool canShoot = true;
+	private bool overheated = false;
+	PlayerGui pGui;
+	public float overheatValue = 0.0f;
+	public float timeSinceLastShot = 0.0f;
+	public float timeToStartCooldown = 1.0f;
+
+	void Awake() {
+		pGui = GetComponent<PlayerGui> ();
+	}
 
 	void Start() {
-
+		//StartCoroutine (OverheatManager ());
 	}
 
 	void FixedUpdate() {
 		MouseUpdate ();
+		UpdateOverheat ();
 	}
 
 	void MouseUpdate () {
-		if (Input.GetMouseButton(0) && canShoot) {
-			//ShootBullet();
+		if (Input.GetMouseButton (0) && canShoot && !overheated) {
 			StartCoroutine (FireAfterTime ());
-			//Debug.Log(bullet.GetComponent<Rigidbody2D>().velocity);
+			timeSinceLastShot = 0;
+		} else {
+			timeSinceLastShot += Time.fixedDeltaTime;
 		}
 	}
 
@@ -37,12 +51,35 @@ public class Player_Fire : NetworkBehaviour {
 
 	[ClientCallback]
 	void ShootBullet() {
+		overheatValue += overheatRate;
 		float xPos = turretTransform.position.x;//this.transform.position.x;
 		float yPos = turretTransform.position.y;//this.transform.position.y;
 		Vector3 dir = GetComponent<ShipControl> ().getDirection () * bulletSpeed;
 		CmdSpawnBasicBullet (xPos, yPos, dir.x, dir.y, turretTransform.rotation);
 
 	}
+
+	void UpdateOverheat() {
+		if (overheated) {
+			overheatValue -= overheatCooldown;
+			if (overheatValue <= 0) {
+				overheated = false;
+			}
+		} else if (overheatValue > 100) {
+			overheated = true;
+		} else {
+			// if we should start cooling down, do so
+			if (timeSinceLastShot > timeToStartCooldown) 
+				overheatValue -= overheatCoolRate;
+		}
+
+		if (overheatValue < 0)
+			overheatValue = 0;
+
+		// update the GUI
+		pGui.setCurrentAmmo(overheatValue);
+	}
+		
 		
 	IEnumerator FireAfterTime()
 	{

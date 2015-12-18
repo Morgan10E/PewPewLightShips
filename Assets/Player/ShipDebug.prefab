@@ -78,9 +78,8 @@ GameObject:
   - 114: {fileID: 11463220}
   - 114: {fileID: 11410546}
   - 114: {fileID: 11438672}
-  - 114: {fileID: 11441932}
   m_Layer: 13
-  m_Name: Ship
+  m_Name: ShipDebug
   m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,7 +264,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1bdfa18305b7457ebc0a720f6e6edb4, type: 3}
   m_Name: 
@@ -279,7 +278,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0f1e9858b962428a9dffe27c58508d2, type: 3}
   m_Name: 
@@ -294,7 +293,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11654ac4b66d34e26a85e6b25b340499, type: 3}
   m_Name: 
@@ -306,7 +305,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
   m_Name: 
@@ -320,24 +319,13 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &11441932
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3ed37e66618d4a9cb13c914fcdea380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11444164
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1549e3be78694549ba8850e2df57d49, type: 3}
   m_Name: 
@@ -364,7 +352,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff484dc4f7cf74eb59e74813d13a37e2, type: 3}
   m_Name: 
@@ -393,7 +381,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0d4d9ad0ac10483797080fffbab50c4, type: 3}
   m_Name: 
@@ -412,22 +400,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 42
-    i1: 188
-    i2: 105
-    i3: 215
-    i4: 84
-    i5: 44
+    i0: 223
+    i1: 90
+    i2: 174
+    i3: 99
+    i4: 253
+    i5: 223
     i6: 148
-    i7: 173
-    i8: 24
-    i9: 196
-    i10: 99
-    i11: 75
-    i12: 58
-    i13: 138
-    i14: 212
-    i15: 35
+    i7: 124
+    i8: 235
+    i9: 7
+    i10: 188
+    i11: 148
+    i12: 11
+    i13: 159
+    i14: 112
+    i15: 209
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
 --- !u!114 &11463220
@@ -448,7 +436,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf957f061a74340e19928cc5c01812bc, type: 3}
   m_Name: 

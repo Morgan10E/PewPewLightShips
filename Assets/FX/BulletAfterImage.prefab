@@ -1660,6 +1660,10 @@ Prefab:
       propertyPath: InitialModule.startSize.scalar
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100750}
