@@ -14,6 +14,8 @@ public class MapGenerator : MonoBehaviour {
 	public int randomFillPercent = 50;
 	public bool clickToRegen = true;
 
+	public GameObject spawnPrefab;
+
 	int[,] map;
 
 	// Use this for initialization
@@ -45,6 +47,18 @@ public class MapGenerator : MonoBehaviour {
 			// use cellular automata to smooth out the map
 			SmoothMap ();
 		}
+
+		// add in the spawn point
+		if (useRandomSeed) {
+			seed = Time.time.ToString ();
+		}
+		System.Random prng = new System.Random (seed.GetHashCode ());
+		int spawnIndex = prng.Next (0, rooms.Count - 1);
+		Vector2 spawnLoc = rooms [spawnIndex];
+		// should not need to do this over the network
+		spawnLoc -= new Vector2(width/2, height/2);
+		Instantiate(spawnPrefab, new Vector3(spawnLoc.x, spawnLoc.y), Quaternion.identity);
+
 
 		// add a border around the map
 		int borderSize = 5;

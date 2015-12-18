@@ -7,9 +7,14 @@ public class Player_Die : NetworkBehaviour {
 	TeamManager teamManager;
 	bool spawning = false;
 
+	void Awake() {
+		teamManager = GameObject.Find ("TeamManager").GetComponent<TeamManager> ();
+	}
+
 	// Use this for initialization
 	void Start () {
-		teamManager = GameObject.Find ("TeamManager").GetComponent<TeamManager> ();
+		//teamManager.SetRespawnPoint (this.gameObject);
+		transform.rotation = Quaternion.identity;
 	}
 	
 	// Update is called once per frame
