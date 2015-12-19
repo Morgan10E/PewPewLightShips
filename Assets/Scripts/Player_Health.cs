@@ -45,8 +45,7 @@ public class Player_Health : NetworkBehaviour {
 	public void TakeDamage(int amount)
 	{
 		if (!isServer)
-			return;
-		
+			return;	
 		health -= amount;
 		RpcDamage(amount);
 	}

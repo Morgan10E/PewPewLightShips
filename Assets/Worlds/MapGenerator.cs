@@ -13,8 +13,11 @@ public class MapGenerator : MonoBehaviour {
 	[Range(0, 100)]
 	public int randomFillPercent = 50;
 	public bool clickToRegen = true;
+	public int roomsToGen = 2;
+	public int roomSize = 25;
 
 	public GameObject spawnPrefab;
+	List<Vector2> enemySpawnLocations;
 
 	int[,] map;
 
@@ -28,6 +31,10 @@ public class MapGenerator : MonoBehaviour {
 			GenerateMap ();
 		}
 	}
+
+	public List<Vector2> GetEnemySpawnLocation() {
+		return enemySpawnLocations;
+	}
 	
 	void GenerateMap() {
 		map = new int[width, height];
@@ -36,8 +43,8 @@ public class MapGenerator : MonoBehaviour {
 		PerlinFillMap();
 
 		// Generate the main rooms
-		List<Vector2> rooms = GenerateRoomCenters(5, 25, 2);
-		rooms = ForceDirectRooms (rooms, 27, 0.1f, 80, width, height, 20);
+		List<Vector2> rooms = GenerateRoomCenters(roomsToGen, roomSize, 2);
+		rooms = ForceDirectRooms (rooms, roomSize, 0.1f, 80, width, height, 20);
 		for (int i = 0; i < rooms.Count; i++) {
 			EmptyCircle((int) rooms[i].x, (int) rooms[i].y, 15);
 		}
@@ -54,10 +61,12 @@ public class MapGenerator : MonoBehaviour {
 		}
 		System.Random prng = new System.Random (seed.GetHashCode ());
 		int spawnIndex = prng.Next (0, rooms.Count - 1);
-		Vector2 spawnLoc = rooms [spawnIndex];
-		// should not need to do this over the network
-		spawnLoc -= new Vector2(width/2, height/2);
-		Instantiate(spawnPrefab, new Vector3(spawnLoc.x, spawnLoc.y), Quaternion.identity);
+		CreateSpawnPoint(rooms [spawnIndex]);
+		rooms.RemoveAt (spawnIndex);
+		// spawn in a single enemy
+		int enemyIndex = prng.Next (0, rooms.Count - 1);
+//		if (isServer)
+		StoreEnemySpawns(rooms);
 
 
 		// add a border around the map
@@ -75,6 +84,18 @@ public class MapGenerator : MonoBehaviour {
 
 		// generate the mesh
 		GetComponent<MeshGenerator> ().GenerateMesh (borderedMap, 1);
+	}
+
+	void CreateSpawnPoint(Vector2 spawnLoc) {
+		spawnLoc -= new Vector2(width/2, height/2);
+		Instantiate(spawnPrefab, new Vector3(spawnLoc.x, spawnLoc.y), Quaternion.identity);
+	}
+
+	void StoreEnemySpawns(List<Vector2> rooms) {
+		enemySpawnLocations = new List<Vector2> (rooms);
+		for (int i = 0; i < enemySpawnLocations.Count; i++) {
+			enemySpawnLocations[i] -= new Vector2(width/2, height/2);
+		}
 	}
 		
 	List<Vector2> GenerateRoomCenters(int numRooms, float radius, int borderWidth) {

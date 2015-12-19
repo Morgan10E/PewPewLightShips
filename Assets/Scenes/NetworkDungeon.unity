@@ -494,6 +494,10 @@ Prefab:
       propertyPath: clickToRegen
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11488376, guid: 1712360ad43a5471d8418b65e7fcfcac, type: 2}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 190010, guid: ce2fc50e6625b4293adeb53f8be1d486, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1712360ad43a5471d8418b65e7fcfcac, type: 2}
   m_IsPrefabParent: 0
@@ -1001,6 +1005,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &1169223099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1169223102}
+  - 114: {fileID: 1169223101}
+  - 114: {fileID: 1169223100}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1169223100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169223099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6c4bb630bfd449faef07d0116e91cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 190010, guid: ce2fc50e6625b4293adeb53f8be1d486, type: 2}
+--- !u!114 &1169223101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169223099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!4 &1169223102
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169223099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.163588, y: -21.856047, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &1227688094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1271,7 @@ MonoBehaviour:
     m_MaxPacketSize: 2000
   m_Channels: 0500000000000000
   m_UseWebSockets: 0
-  m_UseSimulator: 1
+  m_UseSimulator: 0
   m_SimulatedLatency: 20
   m_PacketLossPercentage: 0
   m_MatchHost: mm.unet.unity3d.com

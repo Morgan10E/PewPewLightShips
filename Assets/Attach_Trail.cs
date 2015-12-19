@@ -11,7 +11,7 @@ public class Attach_Trail : NetworkBehaviour {
 	void Awake () {
 		// Store a reference to the TrailSpawner
 		trailSpawner = GameObject.Find("TrailPool").GetComponent<Spawn_Trails>();
-		Debug.Log("Bullet created");
+		//Debug.Log("Bullet created");
 	}
 
 	void Start() {
