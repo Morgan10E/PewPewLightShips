@@ -32,6 +32,7 @@ public class MeshGenerator : MonoBehaviour {
 		GetComponent<MeshFilter> ().mesh = mesh;
 		mesh.vertices = vertices.ToArray ();
 		mesh.triangles = triangles.ToArray ();
+		//mesh.Optimize ();
 		mesh.RecalculateNormals ();
 
 		int tileAmount = 3;

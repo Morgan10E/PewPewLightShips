@@ -468,7 +468,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11488376, guid: 1712360ad43a5471d8418b65e7fcfcac, type: 2}
       propertyPath: randomFillPercent
-      value: 45
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 11488376, guid: 1712360ad43a5471d8418b65e7fcfcac, type: 2}
       propertyPath: width

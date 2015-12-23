@@ -41,6 +41,7 @@ public class MapGenerator : MonoBehaviour {
 		//RandomFillMap ();
 		// create the initial perlin noise map
 		PerlinFillMap();
+		DebugPerlin ();
 
 		// Generate the main rooms
 		List<Vector2> rooms = GenerateRoomCenters(roomsToGen, roomSize, 2);
@@ -60,11 +61,11 @@ public class MapGenerator : MonoBehaviour {
 			seed = Time.time.ToString ();
 		}
 		System.Random prng = new System.Random (seed.GetHashCode ());
-		int spawnIndex = prng.Next (0, rooms.Count - 1);
+		int spawnIndex = prng.Next (0, rooms.Count);
 		CreateSpawnPoint(rooms [spawnIndex]);
 		rooms.RemoveAt (spawnIndex);
 		// spawn in a single enemy
-		int enemyIndex = prng.Next (0, rooms.Count - 1);
+		int enemyIndex = prng.Next (0, rooms.Count);
 //		if (isServer)
 		StoreEnemySpawns(rooms);
 
@@ -84,6 +85,9 @@ public class MapGenerator : MonoBehaviour {
 
 		// generate the mesh
 		GetComponent<MeshGenerator> ().GenerateMesh (borderedMap, 1);
+
+		// see which nodes are connected
+		graph = new WaypointGraph (debugPoints, width, height);
 	}
 
 	void CreateSpawnPoint(Vector2 spawnLoc) {
@@ -207,6 +211,8 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 
+
+
 	void PerlinFillMap() {
 		// the scale for what we decide is filled or not
 		//float thresh = 0.5f;
@@ -237,7 +243,89 @@ public class MapGenerator : MonoBehaviour {
 		}
 
 	}
+
+	void OnDrawGizmos() {
+		if (graph != null) {
+			graph.drawGizmos ();
+		}
+	}
+
+	List<Vector2> debugPoints;
+	WaypointGraph graph;
+
+	void DebugPerlin() {
+
+		debugPoints = new List<Vector2> ();
+		// the scale for what we decide is filled or not
+		//float thresh = 0.5f;
+		float thresh = 1 - (randomFillPercent / 100f) + 0.1f;
+
+		// the zoom we have on the noise
+		float scale = 10.0f / (Mathf.Max (width, height));
+
+		// random offset into the perlin noise sample
+		if (useRandomSeed) {
+			seed = Time.time.ToString ();
+		}
+		System.Random prng = new System.Random (seed.GetHashCode ());
+		float xOffset = (float) prng.NextDouble () * 10;
+		float yOffset = (float) prng.NextDouble () * 10;
+
+		int[,] data = new int[width, height];
+
+		// go through and sample the noise
+		for (int x = 1; x < width - 1; x++) {
+			for (int y = 1; y < height - 1; y++) {
+				float xCoord = x * scale + xOffset;
+				float yCoord = y * scale + yOffset;
+				if (Mathf.PerlinNoise (xCoord, yCoord) > thresh) {
+					//debugPoints.Add (new Vector2 (x, y));
+					data [x, y] = 0;
+				} else {
+					data [x, y] = 1;
+				}
+			}
+		}
+
+		// now, we use flood fill to detect each "room" and compute centroids
+		FloodFillCentroids(data);
+	}
+
+	void FloodFillCentroids(int[,] data) {
+		for (int x = 0; x < data.GetLength (0); x++) {
+			for (int y = 0; y < data.GetLength (1); y++) {
+				if (data [x, y] == 1)
+					continue;
+				Vector2 centroid = GetCentroidFloodFill (data, x, y);
+				debugPoints.Add (centroid);
+			}
+		}
+	}
+
+	Vector2 GetCentroidFloodFill(int[,] data, int x, int y) {
+		List<Vector2> points = new List<Vector2> ();
+		FloodFillHelper(data, points, x, y);
+		Vector2 result = Vector2.zero;
+		foreach (Vector2 point in points) {
+			result += point;
+		}
+		return result / points.Count;
+	}
+
+	void FloodFillHelper(int[,] data, List<Vector2> points, int x, int y) {
+		points.Add (new Vector2 (x, y));
+		//Debug.Log ("x: " + x + ", y: " + y);
+		data [x, y] = 1;
+		if (x > 0 && data [x - 1, y] == 0)
+			FloodFillHelper (data, points, x - 1, y);
+		if (x < data.GetLength(0) - 1 && data[x+1, y] == 0) 
+			FloodFillHelper(data, points, x + 1, y);
+		if (y > 0 && data[x, y-1] == 0) 
+			FloodFillHelper(data, points, x, y - 1);
+		if (y < data.GetLength(1) - 1 && data[x, y+1] == 0) 
+			FloodFillHelper(data, points, x, y + 1);
 		
+	}
 
 	void SmoothMap() {
 		int[,] newMap = (int[,]) map.Clone();
