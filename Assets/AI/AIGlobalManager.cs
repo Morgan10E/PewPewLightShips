@@ -16,11 +16,11 @@ public class AIGlobalManager : MonoBehaviour {
 	}
 
 	public Waypoint getNearest(Vector2 location) {
-		graph.getClosestWaypoint (location);
+		return graph.getClosestWaypoint (location);
 	}
 
 	public Waypoint getRandomWaypoint() {
-		return graph [prng.Next (0, graph.waypoints.Count)];
+		return graph.waypoints [prng.Next (0, graph.waypoints.Count)];
 	}
 
 	public bool closeToWaypoint(Vector2 pos, Waypoint w) {
@@ -37,7 +37,7 @@ public class AIGlobalManager : MonoBehaviour {
 			seed = Time.time.ToString ();
 		}
 		prng = new System.Random (seed.GetHashCode ());
-		players = new List<GameObject> ();
+		players = new List<Rigidbody2D> ();
 	}
 	
 	// Update is called once per frame
