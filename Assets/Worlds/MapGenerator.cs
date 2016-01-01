@@ -19,6 +19,8 @@ public class MapGenerator : MonoBehaviour {
 	public GameObject spawnPrefab;
 	List<Vector2> enemySpawnLocations;
 
+	public AIGlobalManager aiManager;
+
 	int[,] map;
 
 	// Use this for initialization
@@ -41,7 +43,7 @@ public class MapGenerator : MonoBehaviour {
 		//RandomFillMap ();
 		// create the initial perlin noise map
 		PerlinFillMap();
-		DebugPerlin ();
+		IdentifyPoints();
 
 		// Generate the main rooms
 		List<Vector2> rooms = GenerateRoomCenters(roomsToGen, roomSize, 2);
@@ -87,7 +89,14 @@ public class MapGenerator : MonoBehaviour {
 		GetComponent<MeshGenerator> ().GenerateMesh (borderedMap, 1);
 
 		// see which nodes are connected
+		// note that we need to call debug perlin first for this to work
 		graph = new WaypointGraph (debugPoints, width, height);
+		// test the waypoint graph a bit
+		Waypoint startPoint = graph.waypoints[prng.Next(0, graph.waypoints.Count)];
+		Waypoint endPoint = graph.waypoints[prng.Next(0, graph.waypoints.Count)];
+		// attach the waypoint graph to the ai manager
+		aiManager.setWaypointGraph(graph);
+
 	}
 
 	void CreateSpawnPoint(Vector2 spawnLoc) {
@@ -253,7 +262,7 @@ public class MapGenerator : MonoBehaviour {
 	List<Vector2> debugPoints;
 	WaypointGraph graph;
 
-	void DebugPerlin() {
+	void IdentifyPoints() {
 
 		debugPoints = new List<Vector2> ();
 		// the scale for what we decide is filled or not

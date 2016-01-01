@@ -24,4 +24,8 @@ public class Waypoint {
 			//Debug.Log (hit.collider);
 		}
 	}
+
+	public static float distance(Waypoint a, Waypoint b) {
+		return Vector2.Distance (a.loc, b.loc);
+	}
 }

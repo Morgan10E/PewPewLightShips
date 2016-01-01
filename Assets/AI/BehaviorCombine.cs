@@ -21,6 +21,10 @@ public class BehaviorCombine : MonoBehaviour {
 	void Start () {
 	}
 
+	public bool behaviorsPresent() {
+		return (behaviors.Count > 0);
+	}
+
 	public void AddBehavior(BaseBehavior behavior) {
 		behaviors.Add (behavior);
 	}
@@ -35,7 +39,7 @@ public class BehaviorCombine : MonoBehaviour {
 		body.velocity = Vector2.ClampMagnitude(newVel, maxSpeed);
 		if (enableRotation && body.velocity != Vector2.zero) {
 			float angle = Mathf.Atan2 (body.velocity.y, body.velocity.x) * Mathf.Rad2Deg - 90;
-			body.rotation = Mathf.Lerp(body.rotation, angle, 0.1f);
+			body.rotation = Mathf.Lerp(body.rotation, angle, 0.3f);
 			//Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
 			//transform.rotation = Quaternion.RotateTowards (transform.rotation, q, rotationRate * Time.deltaTime);
 		}

@@ -210,45 +210,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 394645845}
---- !u!1 &399532434
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 399532436}
-  - 114: {fileID: 399532435}
-  m_Layer: 0
-  m_Name: AIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &399532435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399532434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf53034e135174b1e9fb1f749e079ad6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &399532436
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 399532434}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.412785, y: -0.6849036, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
 --- !u!1 &429645692
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,10 +498,6 @@ Prefab:
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 190010, guid: ce2fc50e6625b4293adeb53f8be1d486, type: 2}
-    - target: {fileID: 11488376, guid: 1712360ad43a5471d8418b65e7fcfcac, type: 2}
-      propertyPath: aiManager
-      value: 
-      objectReference: {fileID: 399532435}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1712360ad43a5471d8418b65e7fcfcac, type: 2}
   m_IsPrefabParent: 0
