@@ -9,6 +9,7 @@ public class MapGenerator : MonoBehaviour {
 
 	public string seed = "test";
 	public bool useRandomSeed = true;
+	public bool pvp = false;
 
 	[Range(0, 100)]
 	public int randomFillPercent = 50;
@@ -66,10 +67,13 @@ public class MapGenerator : MonoBehaviour {
 		int spawnIndex = prng.Next (0, rooms.Count);
 		CreateSpawnPoint(rooms [spawnIndex]);
 		rooms.RemoveAt (spawnIndex);
-		// spawn in a single enemy
-		int enemyIndex = prng.Next (0, rooms.Count);
-//		if (isServer)
-		StoreEnemySpawns(rooms);
+		if (pvp) {
+			CreateSpawnPoint(rooms [spawnIndex]);
+		} else {
+			// spawn in a single enemy
+			int enemyIndex = prng.Next (0, rooms.Count);
+			StoreEnemySpawns (rooms);
+		}
 
 
 		// add a border around the map
