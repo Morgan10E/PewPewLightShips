@@ -8,9 +8,10 @@ public class ShipControl : MonoBehaviour {
 	public Camera shipCamera;
 	public float rotationRate = 400f;
 	public float speed = 10f;
-	public float boostSpeed = 20f;
-	public float boostDuration = 0.5f;
+//	public float boostSpeed = 20f;
+//	public float boostDuration = 0.5f;
 //	public float boostDelay = 0.0f;
+	public bool enableControl = true;
 
 //	public GameObject projectile;
 	private bool isTethered = false;
@@ -95,6 +96,7 @@ public class ShipControl : MonoBehaviour {
 		//turret.rotation.y = transform.position.y + dir.y * radius;
 	}
 
+	/*
 	void DoneBoosting() {
 		// reset the velocity
 		float h = Input.GetAxis("Horizontal");
@@ -107,42 +109,44 @@ public class ShipControl : MonoBehaviour {
 		}
 		isBoosting = false;
 	}
-
+*/
 	void FixedUpdate () {
-		//#if CROSS_PLATFORM_INPUT
-		//float h = CrossPlatformInput.GetAxis("Horizontal");
-		//float v = CrossPlatformInput.GetAxis("Vertical");
-		//#else
-		float h = Input.GetAxis("Horizontal");
-		float v = Input.GetAxis("Vertical");
-		//#endif
-		bool shiftPressed = Input.GetKeyDown ("left shift");
+		if (enableControl) {
+			//#if CROSS_PLATFORM_INPUT
+			//float h = CrossPlatformInput.GetAxis("Horizontal");
+			//float v = CrossPlatformInput.GetAxis("Vertical");
+			//#else
+			float h = Input.GetAxis ("Horizontal");
+			float v = Input.GetAxis ("Vertical");
+			//#endif
+//			bool shiftPressed = Input.GetKeyDown ("left shift");
 
-		if (shiftPressed) {
-			if (!isBoosting) {
-				// start boosting
-				isBoosting = true;
-				float angle = transform.rotation.eulerAngles.z;
-				GetComponent<Rigidbody2D> ().velocity = new Vector2(-transform.right.y * boostSpeed, transform.right.x * boostSpeed);
-				Invoke("DoneBoosting", boostDuration);
+			/*if (shiftPressed) {
+				if (!isBoosting) {
+					// start boosting
+					isBoosting = true;
+					float angle = transform.rotation.eulerAngles.z;
+					GetComponent<Rigidbody2D> ().velocity = new Vector2(-transform.right.y * boostSpeed, transform.right.x * boostSpeed);
+					Invoke("DoneBoosting", boostDuration);
 
-				// if we can, enable the after image
-				if (GetComponent<AfterImage>() != null) {
-					// TODO: make this happen over the network
-					GetComponent<AfterImage>().EnableAfterImage();
+					// if we can, enable the after image
+					if (GetComponent<AfterImage>() != null) {
+						// TODO: make this happen over the network
+						GetComponent<AfterImage>().EnableAfterImage();
+					}
 				}
+			}*/
+
+			Vector2 newSpeed = new Vector2 (h * speed, v * speed);
+			if (!isBoosting) {
+				GetComponent<Rigidbody2D> ().velocity = newSpeed;
 			}
-		}
 
-		Vector2 newSpeed = new Vector2 (h * speed, v * speed);
-		if (!isBoosting) {
-			GetComponent<Rigidbody2D> ().velocity = newSpeed;
-		}
-
-		if (h != 0 || v != 0) {
-			float angle = Mathf.Atan2 (newSpeed.y, newSpeed.x) * Mathf.Rad2Deg-90;
-			Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
-			transform.rotation = Quaternion.RotateTowards (transform.rotation, q, rotationRate*Time.deltaTime);
+			if (h != 0 || v != 0) {
+				float angle = Mathf.Atan2 (newSpeed.y, newSpeed.x) * Mathf.Rad2Deg - 90;
+				Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
+				transform.rotation = Quaternion.RotateTowards (transform.rotation, q, rotationRate * Time.deltaTime);
+			}
 		}
 	}
 }

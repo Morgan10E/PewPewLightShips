@@ -79,6 +79,7 @@ GameObject:
   - 114: {fileID: 11410546}
   - 114: {fileID: 11438672}
   - 114: {fileID: 11441932}
+  - 114: {fileID: 11483986}
   m_Layer: 13
   m_Name: Ship
   m_TagString: Ship
@@ -375,6 +376,8 @@ MonoBehaviour:
   rotationRate: 500
   speed: 10
   boostSpeed: 20
+  boostDuration: 0.5
+  enableControl: 1
 --- !u!114 &11450366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -492,6 +495,19 @@ MonoBehaviour:
   lookAheadFactor: 2
   lookAheadReturnSpeed: 0.5
   lookAheadMoveThreshold: 0.1
+--- !u!114 &11483986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175444}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4809a2675326e4ecd94223da36940b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boostSpeed: 20
+  boostDuration: 0.5
 --- !u!120 &12043792
 LineRenderer:
   m_ObjectHideFlags: 1

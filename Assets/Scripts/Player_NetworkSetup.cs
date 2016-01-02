@@ -13,6 +13,7 @@ public class Player_NetworkSetup : NetworkBehaviour {
 			GetComponent<ShipControl> ().enabled = true;
 			GetComponent<Player_Fire> ().enabled = true;
 			GetComponent<PlayerGui> ().enabled = true;
+			GetComponent<Player_Boost> ().enabled = true;
 			PlayerCam.enabled = true;
 		} else {
 			// enable health bars
