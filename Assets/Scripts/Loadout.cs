@@ -18,6 +18,8 @@ public class Loadout : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		abilities = new Ability[3];
+		abilities [0] = (DemoAbility)ScriptableObject.CreateInstance("DemoAbility");
 		SetLoadout (defaultIndex);
 	}
 	
@@ -27,12 +29,7 @@ public class Loadout : MonoBehaviour {
 //	}
 
 	public void SetLoadout(int index) {
-		Ability[] newAbilities = new Ability[3];
-		newAbilities [0] = abilities [first [index]];
-		newAbilities [1] = abilities [second [index]];
-		newAbilities [2] = abilities [third [index]];
-
-		GetComponent<Abilities>().abilities = newAbilities;
+		GetComponent<Abilities> ().SetAbilities (abilities [first [index]], abilities [second [index]], abilities [third [index]]);
 		GetComponent<ShipControl> ().speed = speed[index];
 		GetComponent<Player_Boost> ().boostSpeed = boostSpeed[index];
 		GetComponent<Player_Boost> ().boostDuration = boostDuration[index];

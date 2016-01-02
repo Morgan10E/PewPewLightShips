@@ -14,6 +14,8 @@ public class Player_NetworkSetup : NetworkBehaviour {
 			GetComponent<Player_Fire> ().enabled = true;
 			GetComponent<PlayerGui> ().enabled = true;
 			GetComponent<Player_Boost> ().enabled = true;
+			GetComponent<Abilities> ().enabled = true;
+			GetComponent<Loadout> ().enabled = true;
 			PlayerCam.enabled = true;
 		} else {
 			// enable health bars

@@ -80,6 +80,8 @@ GameObject:
   - 114: {fileID: 11438672}
   - 114: {fileID: 11441932}
   - 114: {fileID: 11483986}
+  - 114: {fileID: 11430424}
+  - 114: {fileID: 11481430}
   m_Layer: 13
   m_Name: Ship
   m_TagString: Ship
@@ -301,6 +303,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCam: {fileID: 2047466}
+--- !u!114 &11430424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175444}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03e2bd17dd8f4f65b1748bbf93db17d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11438672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,9 +387,7 @@ MonoBehaviour:
   radius: 1
   shipCamera: {fileID: 2047466}
   rotationRate: 500
-  speed: 10
-  boostSpeed: 20
-  boostDuration: 0.5
+  speed: 5
   enableControl: 1
 --- !u!114 &11450366
 MonoBehaviour:
@@ -495,6 +506,27 @@ MonoBehaviour:
   lookAheadFactor: 2
   lookAheadReturnSpeed: 0.5
   lookAheadMoveThreshold: 0.1
+--- !u!114 &11481430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175444}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8fc41b67d71848fead359f13c9f92b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed:
+  - 10
+  boostSpeed:
+  - 20
+  boostDuration:
+  - 0.5
+  defaultIndex: 0
+  first: 00000000
+  second: 00000000
+  third: 00000000
 --- !u!114 &11483986
 MonoBehaviour:
   m_ObjectHideFlags: 1
