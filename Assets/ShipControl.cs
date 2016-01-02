@@ -8,9 +8,6 @@ public class ShipControl : MonoBehaviour {
 	public Camera shipCamera;
 	public float rotationRate = 400f;
 	public float speed = 10f;
-//	public float boostSpeed = 20f;
-//	public float boostDuration = 0.5f;
-//	public float boostDelay = 0.0f;
 	public bool enableControl = true;
 
 //	public GameObject projectile;
@@ -36,53 +33,8 @@ public class ShipControl : MonoBehaviour {
 		//Debug.Log (direction);
 		return direction;
 	}
-	
-
-	// Update is called once per frame
-//	void MouseUpdate () {
-//		if (Input.GetKeyDown(KeyCode.Mouse0)) {
-//			GameObject bullet = Instantiate(projectile, new Vector2(turret.position.x + turret.up.x, turret.position.y + turret.up.y), Quaternion.identity) as GameObject;
-//			Vector3 dir = getDirection() * 10;
-//			bullet.GetComponent<Rigidbody2D>().velocity = dir;
-//			Debug.Log(bullet.GetComponent<Rigidbody2D>().velocity);
-//		}
-//
-//		if (Input.GetMouseButtonDown(1)) { // right click
-//			if (isTethered) {
-//				isTethered = false;
-//				this.springJoint.enabled = false;
-//				springJoint.connectedBody = null;
-//				lineRenderer.enabled = false;
-//
-//			} else {
-//				GameObject bullet = Instantiate(projectile, new Vector2(transform.position.x + transform.up.x, transform.position.y + transform.up.y), Quaternion.identity) as GameObject;
-//				TetherBulletScript bulletControlScript = bullet.GetComponent<TetherBulletScript>();
-//				bulletControlScript.SetPlayer(this.gameObject);
-//			}
-//		}
-//	}
-//
-//	public void TetherToObject(GameObject tetherTarget) {
-//		this.tetherTarget = tetherTarget;
-//		if (springJoint == null) springJoint = this.gameObject.AddComponent<SpringJoint2D>();
-//		else springJoint.enabled = true;
-//		springJoint.connectedBody = tetherTarget.gameObject.GetComponent<Rigidbody2D>();
-//		springJoint.distance = 5f;
-//		springJoint.dampingRatio = 5f;
-//
-//		if (lineRenderer == null) lineRenderer = this.gameObject.GetComponent<LineRenderer>();
-//		lineRenderer.enabled = true;
-//		lineRenderer.SetVertexCount(2);
-//		lineRenderer.GetComponent<Renderer>().enabled = true;
-//		isTethered = true;
-//	}
 
 	void Update() {
-//		MouseUpdate();
-//		if (isTethered) {
-//			lineRenderer.SetPosition(0, this.transform.position);
-//			lineRenderer.SetPosition(1, tetherTarget.transform.position);
-//		}
 		MoveTurret ();
 	}
 
@@ -95,21 +47,7 @@ public class ShipControl : MonoBehaviour {
 		turret.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 		//turret.rotation.y = transform.position.y + dir.y * radius;
 	}
-
-	/*
-	void DoneBoosting() {
-		// reset the velocity
-		float h = Input.GetAxis("Horizontal");
-		float v = Input.GetAxis("Vertical");
-		Vector2 newSpeed = new Vector2 (h * speed, v * speed);
-		GetComponent<Rigidbody2D> ().velocity = newSpeed;
-		if (GetComponent<AfterImage>() != null) {
-			// TODO: make this happen over the network
-			GetComponent<AfterImage>().DisableAfterImage();
-		}
-		isBoosting = false;
-	}
-*/
+		
 	void FixedUpdate () {
 		if (enableControl) {
 			//#if CROSS_PLATFORM_INPUT
@@ -119,23 +57,6 @@ public class ShipControl : MonoBehaviour {
 			float h = Input.GetAxis ("Horizontal");
 			float v = Input.GetAxis ("Vertical");
 			//#endif
-//			bool shiftPressed = Input.GetKeyDown ("left shift");
-
-			/*if (shiftPressed) {
-				if (!isBoosting) {
-					// start boosting
-					isBoosting = true;
-					float angle = transform.rotation.eulerAngles.z;
-					GetComponent<Rigidbody2D> ().velocity = new Vector2(-transform.right.y * boostSpeed, transform.right.x * boostSpeed);
-					Invoke("DoneBoosting", boostDuration);
-
-					// if we can, enable the after image
-					if (GetComponent<AfterImage>() != null) {
-						// TODO: make this happen over the network
-						GetComponent<AfterImage>().EnableAfterImage();
-					}
-				}
-			}*/
 
 			Vector2 newSpeed = new Vector2 (h * speed, v * speed);
 			if (!isBoosting) {
