@@ -3,10 +3,14 @@ using System.Collections;
 
 public class ShipControl : MonoBehaviour { 
 
-	[SerializeField] Transform turret;
-	[SerializeField] float radius = 50f;
-	[SerializeField] Camera shipCamera;
-	[SerializeField] float rotationRate = 400f;
+	public Transform turret;
+	public float radius = 50f;
+	public Camera shipCamera;
+	public float rotationRate = 400f;
+	public float speed = 10f;
+	public float boostSpeed = 20f;
+	public float boostDuration = 0.5f;
+//	public float boostDelay = 0.0f;
 
 //	public GameObject projectile;
 	private bool isTethered = false;
@@ -95,7 +99,7 @@ public class ShipControl : MonoBehaviour {
 		// reset the velocity
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
-		Vector2 newSpeed = new Vector2 (h * 10, v * 10);
+		Vector2 newSpeed = new Vector2 (h * speed, v * speed);
 		GetComponent<Rigidbody2D> ().velocity = newSpeed;
 		if (GetComponent<AfterImage>() != null) {
 			// TODO: make this happen over the network
@@ -119,8 +123,8 @@ public class ShipControl : MonoBehaviour {
 				// start boosting
 				isBoosting = true;
 				float angle = transform.rotation.eulerAngles.z;
-				GetComponent<Rigidbody2D> ().velocity = new Vector2(-transform.right.y * 20, transform.right.x * 20);
-				Invoke("DoneBoosting", 0.5f);
+				GetComponent<Rigidbody2D> ().velocity = new Vector2(-transform.right.y * boostSpeed, transform.right.x * boostSpeed);
+				Invoke("DoneBoosting", boostDuration);
 
 				// if we can, enable the after image
 				if (GetComponent<AfterImage>() != null) {
@@ -130,7 +134,7 @@ public class ShipControl : MonoBehaviour {
 			}
 		}
 
-		Vector2 newSpeed = new Vector2 (h * 10, v * 10);
+		Vector2 newSpeed = new Vector2 (h * speed, v * speed);
 		if (!isBoosting) {
 			GetComponent<Rigidbody2D> ().velocity = newSpeed;
 		}

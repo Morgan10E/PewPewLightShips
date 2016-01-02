@@ -373,6 +373,8 @@ MonoBehaviour:
   radius: 1
   shipCamera: {fileID: 2047466}
   rotationRate: 500
+  speed: 10
+  boostSpeed: 20
 --- !u!114 &11450366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -746,6 +748,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
