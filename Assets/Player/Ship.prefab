@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 125238, guid: 72339eee182984ac7ab3d91fa72867d2, type: 2}
   fireRate: 0.1
-  bulletSpeed: 30
+  bulletSpeed: 50
   overheatRate: 3
   overheatCoolRate: 2
   overheatCooldown: 1.5
@@ -789,6 +789,10 @@ Prefab:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 125238, guid: 4cea77771b0b4456da9a8c02eaf721eb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: bulletSpeed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 175444}

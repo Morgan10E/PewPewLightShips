@@ -6,6 +6,7 @@ public class Player_Die : NetworkBehaviour {
 
 	TeamManager teamManager;
 	bool spawning = false;
+	public bool isDead = false;
 
 	void Awake() {
 		teamManager = GameObject.Find ("TeamManager").GetComponent<TeamManager> ();
@@ -29,6 +30,7 @@ public class Player_Die : NetworkBehaviour {
 		if (GetComponent<Player_Health> ().GetHealth () <= 0) {
 			//Debug.Log ("killing player");
 			RpcKillPlayer();
+			isDead = true;
 
 			// if it was a player character, respawn them after a timer
 			// TODO: make this more flexible?
@@ -49,6 +51,7 @@ public class Player_Die : NetworkBehaviour {
 
 	void RespawnPlayer() {
 		Debug.Log ("Spawning player");
+		isDead = false;
 		RpcRespawnPlayer ();
 	}
 

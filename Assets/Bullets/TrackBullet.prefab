@@ -12,13 +12,12 @@ GameObject:
   - 114: {fileID: 11426402}
   - 212: {fileID: 21293384}
   - 50: {fileID: 5066102}
-  - 114: {fileID: 11490884}
   - 114: {fileID: 11490510}
   - 114: {fileID: 11445698}
-  - 61: {fileID: 6165782}
   - 61: {fileID: 6162060}
   - 114: {fileID: 11407148}
   - 114: {fileID: 11412314}
+  - 114: {fileID: 11462980}
   m_Layer: 13
   m_Name: TrackBullet
   m_TagString: Projectile
@@ -69,20 +68,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.8}
---- !u!61 &6165782
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 125238}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 0.35, y: 0.8}
 --- !u!114 &11407148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,8 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  steeringForce: 2
-  maxSpeed: 30
+  steeringForce: 4
+  maxSpeed: 50
 --- !u!114 &11420658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +157,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamNum: 0
+--- !u!114 &11462980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb896897215e7436caa1e624443b0145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11490510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,17 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 1
---- !u!114 &11490884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 125238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a37b1770eeb460db878ea224658ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21293384
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -254,7 +239,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: steeringForce
-      value: 2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

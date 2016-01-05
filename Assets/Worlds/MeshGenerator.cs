@@ -39,7 +39,7 @@ public class MeshGenerator : MonoBehaviour {
 		Vector2[] uvs = new Vector2[vertices.Count];
 		for (int i =0; i < vertices.Count; i ++) {
 			float percentX = Mathf.InverseLerp(-map.GetLength(0)/2*squareSize,map.GetLength(0)/2*squareSize,vertices[i].x) * tileAmount;
-			float percentY = Mathf.InverseLerp(-map.GetLength(0)/2*squareSize,map.GetLength(0)/2*squareSize,vertices[i].y) * tileAmount;
+			float percentY = Mathf.InverseLerp(-map.GetLength(1)/2*squareSize,map.GetLength(1)/2*squareSize,vertices[i].y) * tileAmount;
 			uvs[i] = new Vector2(percentX,percentY);
 		}
 		mesh.uv = uvs;

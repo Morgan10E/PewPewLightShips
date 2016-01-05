@@ -15,6 +15,7 @@ TagManager:
   - Loader
   - Projectile
   - PlayerSpawn
+  - Score
   layers:
   - Default
   - TransparentFX

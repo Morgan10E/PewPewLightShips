@@ -2,14 +2,17 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class Hit_Detection : NetworkBehaviour {
+public class OnHitBullet : NetworkBehaviour {
 
-	//[SyncVar] int health = 100;
 	private float damage = 10f;
 	BulletPayload payload;
+	ScoreController scoreController;
 
 	void Awake() {
 		payload = GetComponent<BulletPayload> ();
+		scoreController = GameObject.Find ("Scoreboard").GetComponent<ScoreController> ();
+		if (scoreController != null)
+			Debug.Log ("score controller found");
 	}
 
 	// Use this for initialization
@@ -17,14 +20,17 @@ public class Hit_Detection : NetworkBehaviour {
 		if (payload != null)
 			damage = payload.GetDamage ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		/* Empty */
 	}
+		
 
-	void OnCollisionEnter2D (Collision2D col)
+	void OnTriggerEnter2D (Collider2D col)
 	{
+		if (!isServer)
+			return;
 		TeamIdentity myTeam = GetComponent<TeamIdentity> ();
 		TeamIdentity colTeam = col.gameObject.GetComponent<TeamIdentity> ();
 		if (myTeam != null && colTeam != null && myTeam.GetTeam() == colTeam.GetTeam()) {
@@ -32,9 +38,14 @@ public class Hit_Detection : NetworkBehaviour {
 		}
 		Player_Health playerHealth = col.gameObject.GetComponent<Player_Health> ();
 		if (playerHealth != null) {
+			bool isDead = col.gameObject.GetComponent<Player_Die> ().isDead;
 			playerHealth.TakeDamage(damage);
-			if (playerHealth.GetHealth () <= 0f) {
+			if (playerHealth.GetHealth () <= 0f && !isDead) {
+				
 				// add to the score of the team of the bullet
+				int teamNum = myTeam.GetTeam();
+				scoreController.teamScored (teamNum);
+				RpcUpdateScore (teamNum);
 			}
 		}
 		DestroyOnCollision (this.gameObject);
@@ -43,6 +54,11 @@ public class Hit_Detection : NetworkBehaviour {
 	[Command]
 	void CmdDestroyBullet(GameObject obj) {
 		NetworkServer.Destroy (obj);
+	}
+
+	[ClientRpc]
+	void RpcUpdateScore(int teamNum) {
+		scoreController.teamScored(teamNum);
 	}
 
 	[ClientCallback]
@@ -54,5 +70,4 @@ public class Hit_Detection : NetworkBehaviour {
 			Destroy (obj);
 		}
 	}
-	
 }
