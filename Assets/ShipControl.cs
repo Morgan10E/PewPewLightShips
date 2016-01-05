@@ -13,9 +13,6 @@ public class ShipControl : MonoBehaviour {
 //	public GameObject projectile;
 	private bool isTethered = false;
 	private bool isBoosting = false;
-	GameObject tetherTarget;
-	LineRenderer lineRenderer;
-	SpringJoint2D springJoint;
 
 	// Use this for initialization
 	void Start () {
@@ -50,13 +47,8 @@ public class ShipControl : MonoBehaviour {
 		
 	void FixedUpdate () {
 		if (enableControl) {
-			//#if CROSS_PLATFORM_INPUT
-			//float h = CrossPlatformInput.GetAxis("Horizontal");
-			//float v = CrossPlatformInput.GetAxis("Vertical");
-			//#else
 			float h = Input.GetAxis ("Horizontal");
 			float v = Input.GetAxis ("Vertical");
-			//#endif
 
 			Vector2 newSpeed = new Vector2 (h * speed, v * speed);
 			if (!isBoosting) {

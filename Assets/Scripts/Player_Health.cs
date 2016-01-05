@@ -4,8 +4,8 @@ using UnityEngine.Networking;
 
 public class Player_Health : NetworkBehaviour {
 
-	public int maxHealth = 100;
-	[SyncVar] public int health = 100;
+	public float maxHealth = 100;
+	[SyncVar] public float health = 100;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +19,7 @@ public class Player_Health : NetworkBehaviour {
 	}
 	
 	[ClientRpc]
-	void RpcDamage(int amount)
+	void RpcDamage(float amount)
 	{
 		//Debug.Log("Took damage:" + amount);
 		if (GetComponent<HealthBarPositionScript> ().enabled) {
@@ -42,7 +42,7 @@ public class Player_Health : NetworkBehaviour {
 		}
 	}
 	
-	public void TakeDamage(int amount)
+	public void TakeDamage(float amount)
 	{
 		if (!isServer)
 			return;	
@@ -50,7 +50,7 @@ public class Player_Health : NetworkBehaviour {
 		RpcDamage(amount);
 	}
 
-	public int GetHealth() {
+	public float GetHealth() {
 		return health;
 	}
 

@@ -20,13 +20,13 @@ public class PQueue {
 
 	public PNode head;
 	public PNode tail;
-	List<PNode> allNodes;
+	//List<PNode> allNodes;
 	int count;
 
 	public PQueue() {
 		head = null;
 		tail = null;
-		allNodes = new List<PNode> ();
+		//allNodes = new List<PNode> ();
 		count = 0;
 	}
 

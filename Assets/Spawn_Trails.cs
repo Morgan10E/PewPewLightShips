@@ -14,6 +14,7 @@ public class Spawn_Trails : MonoBehaviour {
 		for (int i = 0; i < numObjects; i++) {
 			GameObject trail = Instantiate (trailPrefab);
 			trail.SetActive (false);
+			trail.transform.parent = this.transform;
 			trailList.Add (trail);
 		}
 	}
@@ -35,8 +36,11 @@ public class Spawn_Trails : MonoBehaviour {
 	}
 
 	public void ReturnTrail(int num) {
-		if (num >= 0)
+		if (num >= 0) {
 			trailList [num].SetActive (false);
+			trailList [num].transform.parent = this.transform;
+		}
+		
 	}
 
 }

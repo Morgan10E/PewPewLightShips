@@ -81,7 +81,9 @@ public class Player_Die : NetworkBehaviour {
 			// disable the ship control
 			GetComponent<ShipControl> ().enabled = false;
 			// disable bullets
-			GetComponent<Player_Fire> ().enabled = false;
+			GetComponent<GunManager> ().enabled = false;
+			// disable tracking shot
+			GetComponent<TrackingShot>().enabled = false;
 
 		} else {
 			// disable the health bar
@@ -115,7 +117,9 @@ public class Player_Die : NetworkBehaviour {
 			// enable the ship control
 			GetComponent<ShipControl> ().enabled = true;
 			// enable bullets
-			GetComponent<Player_Fire> ().enabled = true;
+			GetComponent<GunManager> ().enabled = true;
+			// re-enable tracking shot
+			GetComponent<TrackingShot>().enabled = true;
 		} else {
 			// enable the health bar
 			GetComponent<HealthBarPositionScript> ().EnableHealthBarSprite ();

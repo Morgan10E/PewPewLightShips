@@ -11,7 +11,8 @@ public class Player_NetworkSetup : NetworkBehaviour {
 		if (isLocalPlayer) {
 			//GameObject.Find("Main Camera").SetActive(true);
 			GetComponent<ShipControl> ().enabled = true;
-			GetComponent<Player_Fire> ().enabled = true;
+			GetComponent<GunManager> ().enabled = true;
+			GetComponent<TrackingShot>().enabled = true;
 			GetComponent<PlayerGui> ().enabled = true;
 			GetComponent<Player_Boost> ().enabled = true;
 			GetComponent<Abilities> ().enabled = true;

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class Player_Fire : NetworkBehaviour {
+public class GunManager : NetworkBehaviour {
 
 	public GameObject projectile;
 	public float fireRate = 0.1f;
@@ -14,20 +14,21 @@ public class Player_Fire : NetworkBehaviour {
 	private bool canShoot = true;
 	private bool overheated = false;
 	PlayerGui pGui;
-	public float overheatValue = 0.0f;
-	public float timeSinceLastShot = 0.0f;
+	float overheatValue = 0.0f;
+	float timeSinceLastShot = 0.0f;
 	public float timeToStartCooldown = 1.0f;
 
 	void Awake() {
 		pGui = GetComponent<PlayerGui> ();
-
 	}
 
-	void Start() {
-		//StartCoroutine (OverheatManager ());
+	// Use this for initialization
+	void Start () {
+	
 	}
-
-	void FixedUpdate() {
+	
+	// Update is called once per frame
+	void FixedUpdate () {
 		MouseUpdate ();
 		UpdateOverheat ();
 	}
@@ -51,7 +52,7 @@ public class Player_Fire : NetworkBehaviour {
 	}
 
 	[ClientCallback]
-	void ShootBullet() {
+	public virtual void ShootBullet() {
 		overheatValue += overheatRate;
 		float xPos = turretTransform.position.x;//this.transform.position.x;
 		float yPos = turretTransform.position.y;//this.transform.position.y;
@@ -80,8 +81,8 @@ public class Player_Fire : NetworkBehaviour {
 		// update the GUI
 		pGui.setCurrentAmmo(overheatValue);
 	}
-		
-		
+
+
 	IEnumerator FireAfterTime()
 	{
 		canShoot = false;
@@ -89,5 +90,4 @@ public class Player_Fire : NetworkBehaviour {
 		yield return new WaitForSeconds(fireRate);
 		canShoot = true;
 	}
-
 }

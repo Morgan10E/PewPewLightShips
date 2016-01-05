@@ -5,10 +5,17 @@ using UnityEngine.Networking;
 public class Hit_Detection : NetworkBehaviour {
 
 	//[SyncVar] int health = 100;
+	private float damage = 10f;
+	BulletPayload payload;
+
+	void Awake() {
+		payload = GetComponent<BulletPayload> ();
+	}
 
 	// Use this for initialization
 	void Start () {
-	
+		if (payload != null)
+			damage = payload.GetDamage ();
 	}
 	
 	// Update is called once per frame
@@ -24,7 +31,7 @@ public class Hit_Detection : NetworkBehaviour {
 			return;
 		}
 		if (col.gameObject.GetComponent<Player_Health> () != null) {
-			col.gameObject.GetComponent<Player_Health> ().TakeDamage(10);
+			col.gameObject.GetComponent<Player_Health> ().TakeDamage(damage);
 		}
 		DestroyOnCollision (this.gameObject);
 	}
