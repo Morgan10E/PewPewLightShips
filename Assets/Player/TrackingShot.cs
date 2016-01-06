@@ -12,7 +12,7 @@ public class TrackingShot : NetworkBehaviour {
 	public int numShots = 5;
 	public int maxAmmo = 2;
 	bool charging = false;
-	int ammo;
+	public int ammo;
 
 	// Use this for initialization
 	void Start () {
