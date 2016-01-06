@@ -8,20 +8,36 @@ public class TrackingShot : NetworkBehaviour {
 	Rigidbody2D body;
 	public GameObject bullet;
 	public float bulletSpeed = 30f;
+	public float chargeTime = 5.0f;
 	public int numShots = 5;
+	public int maxAmmo = 2;
+	bool charging = false;
+	int ammo;
 
 	// Use this for initialization
 	void Start () {
 		rand = new System.Random ();
 		body = GetComponent<Rigidbody2D> ();
+		ammo = maxAmmo;
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		if (Input.GetKeyDown (KeyCode.Q)) {
+	void Update () {
+		if (Input.GetKeyDown (KeyCode.Q) && ammo > 0) {
 			// fire bullet
 			FireTrackingShot();
+			ammo--;
 		}
+		if (ammo < maxAmmo && !charging) {
+			charging = true;
+			StartCoroutine (ChargeShots ());
+		}
+	}
+
+	IEnumerator ChargeShots() {
+		yield return new WaitForSeconds (chargeTime);
+		ammo++;
+		charging = false;
 	}
 
 	[ClientCallback]
