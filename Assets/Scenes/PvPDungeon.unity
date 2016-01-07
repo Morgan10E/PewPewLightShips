@@ -154,7 +154,7 @@ GameObject:
   - 222: {fileID: 394645848}
   - 114: {fileID: 394645847}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: HealthFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

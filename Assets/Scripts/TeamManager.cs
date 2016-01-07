@@ -23,7 +23,8 @@ public class TeamManager : MonoBehaviour {
 	}
 
 	public void RegisterSpawn(GameObject spawn/*, int teamNum*/) {
-		this.respawns.Add (spawn);
+		spawn.GetComponent<TeamIdentity> ().SetTeam (respawns.Count);
+		respawns.Add (spawn);
 		Debug.Log ("Num Spawns: " + respawns.Count);
 	}
 

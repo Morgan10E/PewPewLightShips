@@ -11,8 +11,6 @@ public class OnHitBullet : NetworkBehaviour {
 	void Awake() {
 		payload = GetComponent<BulletPayload> ();
 		scoreController = GameObject.Find ("Scoreboard").GetComponent<ScoreController> ();
-		if (scoreController != null)
-			Debug.Log ("score controller found");
 	}
 
 	// Use this for initialization
