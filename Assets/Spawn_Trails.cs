@@ -28,7 +28,9 @@ public class Spawn_Trails : MonoBehaviour {
 				trailList [i].transform.parent = obj.transform;
 
 				// set the particle system rotation
-				trailList[i].GetComponent<ParticleSystem>().startRotation = ((obj.transform.eulerAngles.z - 180) % 360) * Mathf.Deg2Rad;
+				ParticleSystem pSys = trailList[i].GetComponent<ParticleSystem>();
+				pSys.startRotation = ((obj.transform.eulerAngles.z - 180) % 360) * Mathf.Deg2Rad;
+				pSys.startColor = obj.GetComponent<SpriteRenderer> ().color;
 				return i;
 			}
 		}

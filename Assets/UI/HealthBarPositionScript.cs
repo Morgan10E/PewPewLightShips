@@ -12,6 +12,8 @@ public class HealthBarPositionScript : MonoBehaviour {
 	private float baseScale = 1;
 	private float targetHealth = 100;
 
+	public bool colorSet = false;
+
 	// Use this for initialization
 	void Start () {
 		CreateHealthBar ();
@@ -46,6 +48,10 @@ public class HealthBarPositionScript : MonoBehaviour {
 		healthBar.GetComponent<SpriteRenderer> ().enabled = true;
 		setCurrentHealth(maxHealth);
 		
+	}
+
+	public void SetHealthBarColor(Color color) {
+		healthBar.GetComponent<SpriteRenderer> ().color = color;
 	}
 
 	public void DestroyHealthBar() {
