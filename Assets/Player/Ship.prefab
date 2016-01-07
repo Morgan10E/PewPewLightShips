@@ -491,7 +491,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 125238, guid: 4cea77771b0b4456da9a8c02eaf721eb, type: 2}
   bulletSpeed: 30
-  numShots: 5
+  chargeTime: 5
+  numShots: 10
+  maxAmmo: 2
+  ammo: 0
 --- !u!114 &11474044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -503,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf957f061a74340e19928cc5c01812bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
 --- !u!114 &11477502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -792,6 +796,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: bulletSpeed
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: numShots
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

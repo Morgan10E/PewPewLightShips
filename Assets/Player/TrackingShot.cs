@@ -4,6 +4,8 @@ using UnityEngine.Networking;
 
 public class TrackingShot : NetworkBehaviour {
 
+	PlayerGui pGui;
+
 	System.Random rand;
 	Rigidbody2D body;
 	public GameObject bullet;
@@ -16,6 +18,7 @@ public class TrackingShot : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		pGui = GetComponent<PlayerGui> ();
 		rand = new System.Random ();
 		body = GetComponent<Rigidbody2D> ();
 		ammo = maxAmmo;
@@ -27,6 +30,7 @@ public class TrackingShot : NetworkBehaviour {
 			// fire bullet
 			FireTrackingShot();
 			ammo--;
+			pGui.setAbilityAmmo (ammo);
 		}
 		if (ammo < maxAmmo && !charging) {
 			charging = true;
@@ -37,6 +41,7 @@ public class TrackingShot : NetworkBehaviour {
 	IEnumerator ChargeShots() {
 		yield return new WaitForSeconds (chargeTime);
 		ammo++;
+		pGui.setAbilityAmmo (ammo);
 		charging = false;
 	}
 

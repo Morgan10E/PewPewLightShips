@@ -39,9 +39,10 @@ public class TargetTracker : NetworkBehaviour {
 		Vector2 desired = dest - body.position;
 		Vector2 steering = (desired - body.velocity).normalized * steeringForce;
 		if (located) {
-			body.velocity = body.velocity.normalized * (body.velocity.magnitude + 2f);
+			body.velocity = body.velocity.normalized * (body.velocity.magnitude + 4f);
 		} else {
-			if ((desired.normalized - body.velocity.normalized).magnitude < 0.1f) {
+			float alignment = Vector2.Dot (body.velocity.normalized, desired.normalized);
+			if (alignment > 0.95f) {
 				// we are close enough, only need to speed up
 				located = true;
 				Debug.Log ("located");

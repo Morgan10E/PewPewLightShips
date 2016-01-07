@@ -19,4 +19,8 @@ public class PlayerGui : MonoBehaviour {
 	public void setCurrentAmmo(float ammo) {
 		guiControl.SetAmmoSlider (ammo);
 	}
+
+	public void setAbilityAmmo(int count) {
+		guiControl.SetQCount (count);
+	}
 }

@@ -6,6 +6,8 @@ public class GUIControl : MonoBehaviour {
 
 	public Slider healthSlider;
 	public Slider ammoSlider;
+	public Image ammo1;
+	public Image ammo2;
 	private float ammoValue = 0;
 	private float healthValue = 100;
 
@@ -18,6 +20,19 @@ public class GUIControl : MonoBehaviour {
 	void Update () {
 		LerpAmmo ();
 		LerpHealth ();
+	}
+
+	public void SetQCount(int value) {
+		if (value == 0) {
+			ammo1.enabled = false;
+			ammo2.enabled = false;
+		} else if (value == 1) {
+			ammo1.enabled = true;
+			ammo2.enabled = false;
+		} else if (value == 2) {
+			ammo1.enabled = true;
+			ammo2.enabled = true;
+		}
 	}
 
 	private void LerpAmmo() {

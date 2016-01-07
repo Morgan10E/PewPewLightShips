@@ -18,6 +18,7 @@ GameObject:
   - 114: {fileID: 11407148}
   - 114: {fileID: 11412314}
   - 114: {fileID: 11462980}
+  - 114: {fileID: 11483710}
   m_Layer: 13
   m_Name: TrackBullet
   m_TagString: Projectile
@@ -168,6 +169,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb896897215e7436caa1e624443b0145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11483710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623209346d7d3466d9cba39e9fa28954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
 --- !u!114 &11490510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,6 +257,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: maxSpeed
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damage
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
