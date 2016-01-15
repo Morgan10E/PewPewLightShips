@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TeamIdentity : NetworkBehaviour {
 
-	Color[] teamColors = {Color.red, Color.green};
+	public Color[] teamColors = {Color.red, Color.green};
 
 	SpriteRenderer sprite;
 	HealthBarPositionScript hbar;
@@ -20,18 +20,22 @@ public class TeamIdentity : NetworkBehaviour {
 
 	IEnumerator SetHealthColor() {
 		while (teamNum < 0)
-			yield return new WaitForSeconds(0.5f);
-		if (hbar != null && hbar.enabled && teamNum >= 0) {
-			hbar.SetHealthBarColor (teamColors [teamNum]);
-			hbar.colorSet = true;
-		}
+			yield return new WaitForSeconds(0.05f);
 
-		if (isLocalPlayer) {
+		if (tag == "Ship") {
 			// set your health bar color to match
-			GameObject.Find("HealthFill").GetComponent<Image>().color = teamColors[teamNum];
+			sprite.color = teamColors[teamNum];
+			ParticleSystem pSys = GetComponentInChildren<ParticleSystem> ();
+			pSys.startColor = teamColors [teamNum];
+			SpriteRenderer childSprite = GetComponentInChildren<SpriteRenderer> ();
+			childSprite.color = teamColors [teamNum];
 		}
 
 		if (tag == "PlayerSpawn") {
+			sprite.color = teamColors [teamNum];
+		}
+
+		if (tag == "Projectile") {
 			sprite.color = teamColors [teamNum];
 		}
 
@@ -43,6 +47,9 @@ public class TeamIdentity : NetworkBehaviour {
 
 	public void SetTeam(int num) {
 		teamNum = num;
+		if (tag == "Projectile" && sprite != null) {
+			sprite.color = teamColors [teamNum];
+		}
 	}
 
 	public int GetTeam() {

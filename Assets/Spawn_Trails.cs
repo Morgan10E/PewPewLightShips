@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Spawn_Trails : MonoBehaviour {
 
-	List<GameObject> trailList;
+	public List<GameObject> trailList;
 	public int numObjects = 20;
 	public GameObject trailPrefab;
 

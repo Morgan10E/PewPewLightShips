@@ -45,7 +45,7 @@ public class TargetTracker : NetworkBehaviour {
 			if (alignment > 0.95f) {
 				// we are close enough, only need to speed up
 				located = true;
-				Debug.Log ("located");
+				//Debug.Log ("located");
 			} else {
 				body.velocity = new Vector2 (body.velocity.x + steering.x, body.velocity.y + steering.y);
 			}

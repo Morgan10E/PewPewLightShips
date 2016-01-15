@@ -501,7 +501,7 @@ Prefab:
     - target: {fileID: 11488376, guid: 1712360ad43a5471d8418b65e7fcfcac, type: 2}
       propertyPath: aiManager
       value: 
-      objectReference: {fileID: 1791583486}
+      objectReference: {fileID: 0}
     - target: {fileID: 11488376, guid: 1712360ad43a5471d8418b65e7fcfcac, type: 2}
       propertyPath: pvp
       value: 1
@@ -1014,6 +1014,7 @@ GameObject:
   - 92: {fileID: 1088685543}
   - 124: {fileID: 1088685542}
   - 81: {fileID: 1088685541}
+  - 114: {fileID: 1088685540}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1021,6 +1022,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1088685540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1088685539}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a39444b603947fb9a8669cb96f5a87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  damping: 0.2
+  lookAheadFactor: 5
+  lookAheadReturnSpeed: 0.5
+  lookAheadMoveThreshold: 0.1
 --- !u!81 &1088685541
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1249,6 +1266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 673b60cbdc6be43709cf1d905c26f045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trailList: []
   numObjects: 50
   trailPrefab: {fileID: 100750, guid: db2e4c92d2fbb4ffdb454f7d6bfe2e8d, type: 2}
 --- !u!4 &1232282919
@@ -1657,49 +1675,6 @@ RectTransform:
   m_AnchoredPosition: {x: 355, y: -156}
   m_SizeDelta: {x: 710, y: 307}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1791583485
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1791583487}
-  - 114: {fileID: 1791583486}
-  m_Layer: 0
-  m_Name: AIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1791583486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1791583485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf53034e135174b1e9fb1f749e079ad6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seed: destiny
-  useRandomSeed: 0
-  deltaDist: 1
-  players: []
---- !u!4 &1791583487
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1791583485}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.412785, y: -0.6849036, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
 --- !u!1 &1962433859
 GameObject:
   m_ObjectHideFlags: 0

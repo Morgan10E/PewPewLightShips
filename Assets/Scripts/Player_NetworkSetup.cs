@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 
 public class Player_NetworkSetup : NetworkBehaviour {
 
-	[SerializeField] Camera PlayerCam;
+//	[SerializeField] Camera PlayerCam;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,10 @@ public class Player_NetworkSetup : NetworkBehaviour {
 			GetComponent<Player_Boost> ().enabled = true;
 			GetComponent<Abilities> ().enabled = true;
 			GetComponent<Loadout> ().enabled = true;
-			PlayerCam.enabled = true;
+			Camera2DFollow script = Camera.main.GetComponent<Camera2DFollow> ();
+			script.target = transform;
+			script.enabled = true;
+//			PlayerCam.enabled = true;
 		} else {
 			// enable health bars
 			GetComponent<HealthBarPositionScript>().enabled = true;

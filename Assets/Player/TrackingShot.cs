@@ -50,7 +50,8 @@ public class TrackingShot : NetworkBehaviour {
 		Vector3 mouse = Input.mousePosition;
 		mouse.z = 0;
 		Vector3 worldPoint = Camera.main.ScreenToWorldPoint (mouse);
-		Vector2 target = new Vector2 (worldPoint.x, worldPoint.y) + body.position;
+		//Debug.Log (worldPoint);
+		Vector2 target = new Vector2 (worldPoint.x, worldPoint.y);
 		// pick a random angle
 		float baseAngle = body.rotation;
 
@@ -70,6 +71,7 @@ public class TrackingShot : NetworkBehaviour {
 		Rigidbody2D bulletBody = trackingBullet.GetComponent<Rigidbody2D> ();
 		bulletBody.velocity = vel * bulletSpeed;
 		trackingBullet.GetComponent<TargetTracker> ().setDest (dest);
+		Debug.Log (dest);
 		if (bullet.GetComponent<TeamIdentity> () != null && gameObject.GetComponent<TeamIdentity>() != null)
 			bullet.GetComponent<TeamIdentity> ().SetTeam (gameObject.GetComponent<TeamIdentity> ().GetTeam ());
 		NetworkServer.Spawn (trackingBullet);

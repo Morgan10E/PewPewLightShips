@@ -17,7 +17,11 @@ public class TeamManager : MonoBehaviour {
 	public void AssignTeam(GameObject player) {
 		//Debug.Log (player);
 		if (player != null) {
-			player.GetComponent<TeamIdentity> ().SetTeam (numCurrentPlayers % numPlayerTeams);
+			TeamIdentity identity = player.GetComponent<TeamIdentity> ();
+			identity.SetTeam (numCurrentPlayers % numPlayerTeams);
+//			Vector3 spawnPosition = respawns [identity.GetTeam ()].transform.position;
+//			player.GetComponent<Rigidbody2D> ().MovePosition (new Vector2(spawnPosition.x, spawnPosition.y));
+
 			numCurrentPlayers += 1;
 		}
 	}

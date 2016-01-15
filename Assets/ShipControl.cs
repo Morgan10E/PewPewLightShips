@@ -16,6 +16,7 @@ public class ShipControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		shipCamera = Camera.main;
 		transform.localEulerAngles = Vector3.up;
 //		tetherTarget = null;
 //		lineRenderer = null;
