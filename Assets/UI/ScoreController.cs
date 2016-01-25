@@ -6,6 +6,7 @@ public class ScoreController : MonoBehaviour {
 
 	Text scoreText;
 	int[] teamScores;
+	public int scoreToWin = 10;
 
 	void Awake() {
 
@@ -31,6 +32,9 @@ public class ScoreController : MonoBehaviour {
 	public void teamScored(int teamNum) {
 		teamScores[teamNum] = teamScores[teamNum] + 1;
 		updateDisplay ();
+		if (teamScores [teamNum] >= scoreToWin) {
+			Debug.Log("Team " + teamNum + " wins!");
+		}
 	}
 
 
